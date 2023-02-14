@@ -1,0 +1,47 @@
+.custom-button {
+    width: 100%;
+    button.purple {
+        width: 100%;
+        background: var(--button-background);
+        filter: var(--button-filter);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        margin: 20px 0;
+        color: var(--white-text);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        gap: 20px;
+        border-radius: 10px;
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+    button.gold {
+        width: 100%;
+        background: var(--secondary-color);
+        filter: var(--button-filter);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        margin: 20px 0;
+        color: var(--white-text);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 27px;
+        gap: 20px;
+        border-radius: 10px;
+        &:disabled {
+            opacity: 0.5;
+        }
+    }
+}

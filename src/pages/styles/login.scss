@@ -1,0 +1,81 @@
+.login {
+    padding: 20px;
+    width: 100%;
+    background: var(--primary-color);
+    height: 100vh;
+}
+
+.desktop-login {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-login {
+        display: none;
+    }
+    .desktop-login {
+        display: block;
+        width: 100%;
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+            p {
+                font-weight: 600;
+                font-size: 28px;
+                line-height: 42px;
+                color: var(--white-text);
+            }
+        }
+        .desktop-login-form {
+            width: 554px;
+            height: 507px;
+            display: block;
+            margin: 50px auto auto auto;
+            padding: 20px;
+            background: var(--white-text);
+            border-radius: 12px;
+            span {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 100px;
+                padding: 20px;
+                button {
+                    width: 190px;
+                    height: 40px;
+                    background: none;
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 27px;
+                    color: var(--primary-color);
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    img {
+                        vertical-align: top;
+                    }
+                }   
+                button.active {
+                    background: linear-gradient(286.47deg, #712999 80.38%, rgba(113, 41, 153, 0) 109.18%);
+                    filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25));
+                    border-radius: 10px;
+                    width: 190px;
+                    height: 40px;
+                    color: var(--white-text);
+                    > *{
+                        color: white;
+                        filter: drop-shadow(1px 1px 2px var(--white-text));
+                        -webkit-filter:  drop-shadow(1px 1px 2px var(--white-text));
+                    }
+                }
+            }
+        }
+    }
+}
