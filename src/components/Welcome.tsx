@@ -1,6 +1,6 @@
 import './styles/welcome.scss'
-import welcome from '../../assets/icons/welcome.svg'
-// import Button from '../button/Button'
+import welcome from '../assets/icons/welcome.svg'
+import Button from './Button'
 import { useNavigate } from 'react-router-dom'
 
 const Welcome = () => {
