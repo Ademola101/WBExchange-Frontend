@@ -1,0 +1,30 @@
+.global-filter {
+    width: 100%;
+}
+.mobile-global-filter {
+    width: 100%;
+}
+
+.desktop-global-filter {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-global-filter {
+        display: none;
+    }
+    .desktop-global-filter {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 50px;
+        vertical-align: middle;
+        p {
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 27px;
+            color: var(--black-color);
+        }
+    }
+}
