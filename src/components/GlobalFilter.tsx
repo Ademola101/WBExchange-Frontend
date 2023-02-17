@@ -4,7 +4,7 @@ import { useAsyncDebounce } from 'react-table'
 
 import Input from '../components/Input'
 
-const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
+const GlobalFilter = ({ globalFilter, setGlobalFilter }: any) => {
     const [value, setValue] = useState(globalFilter)
     
     const handleChange = useAsyncDebounce((value) => {
@@ -26,7 +26,7 @@ const GlobalFilter = ({ globalFilter, setGlobalFilter }) => {
                         name="password"
                         value={value || ""}
                         onChange={(event: any) => {
-                            setValue(event?.target)
+                            setValue(event?.target.value)
                             handleChange(event.target.value)
                         }}
                         variant='search'
