@@ -50,7 +50,7 @@ const Table = () => {
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
-                <menu>
+                <main>
                     <table {...getTableProps()}>
                         <thead>
                             {
@@ -82,7 +82,7 @@ const Table = () => {
                                 })
                             }
                         </tbody>
-                        <tfoot>
+                        {/* <tfoot>
                             <tr>
                                 <td>
                                     <span>© 2023 N-Tech System</span>
@@ -99,9 +99,9 @@ const Table = () => {
                                     </div>
                                 </td>
                             </tr>
-                        </tfoot>
+                        </tfoot> */}
                     </table>
-                </menu>
+                </main>
             </div>
         </div>
     )
