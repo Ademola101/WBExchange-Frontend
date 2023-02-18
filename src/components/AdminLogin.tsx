@@ -6,6 +6,7 @@ import login from '../assets/icons/login.svg'
 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import AdminWelcome from './AdminWelcome'
 
 const AdminLogin = () => {
     const navigate = useNavigate()
@@ -64,7 +65,7 @@ const AdminLogin = () => {
                     </Button>
                 </form>
             </div>
-            {isModalOpen && <Welcome />}
+            {isModalOpen && <AdminWelcome />}
         </div>
     )
 }

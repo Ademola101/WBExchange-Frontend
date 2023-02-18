@@ -1,29 +1,31 @@
-import './styles/sidebar.scss'
+import './styles/adminsidebar.scss'
 import { NavLink } from "react-router-dom"
 import logo from '../assets/icons/logo.svg'
 import dashboard from '../assets/icons/dashboard.svg'
 import cards from '../assets/icons/cards.svg'
+import createUser from '../assets/icons/createUser.svg'
+import allUser from '../assets/icons/allUser.svg'
 import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
 import Button from './Button'
 
-interface ISidebarProps {
+interface IAdminSidebarProps {
     isActive: boolean
 }
 
-const Sidebar = ({ isActive }: ISidebarProps) => {
+const AdminSidebar = ({ isActive }: IAdminSidebarProps) => {
 
     const handleClick = () => {}
 
     return (
         <div className={isActive ? 'sidebar__container--active' : 'sidebar__container'}>
-        <div className="mobile-user-sidebar"></div>
-        <div className="desktop-user-sidebar">
-            <header className="desktop-sidebar-title">
+        <div className="mobile-admin-sidebar"></div>
+        <div className="desktop-admin-sidebar">
+            <header className="admin-sidebar-title">
                 <img src={logo} alt="logo" className="eform-logo"/>
                 <hr />
             </header>
-            <NavLink to="user" className="nav-links">
+            <NavLink to="/admin" className="nav-links">
                 <div className="icon-container">
                     <img src={dashboard} alt='dashboard icon'/>
                 </div>
@@ -35,18 +37,30 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 </div>
                 <span>Transaction History</span>
             </NavLink>
+            <NavLink to="create-user" className="nav-links">
+                <div className="icon-container">
+                    <img src={createUser} alt='payment icon'/>
+                </div>
+                <span>Create User</span>
+            </NavLink>
+            <NavLink to="all-users" className="nav-links">
+                <div className="icon-container">
+                    <img src={allUser} alt='payment icon'/>
+                </div>
+                <span>All Users</span>
+            </NavLink>
             <NavLink to="change-password" className="nav-links">
                 <div className="icon-container">
                     <img src={key} alt='key icon'/>
                 </div>
                 <span>Change Password</span>
             </NavLink>
-            <footer className="desktop-sidebar-logout">
-                <div className="desktop-user-profile">
+            <footer className="desktop-admin-sidebar-logout">
+                <div className="desktop-admin-user-profile">
                     <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
                     <span>Emmanuel</span>
                 </div>
-                <div className="desktop-logout-button">
+                <div className="desktop-admin-logout-button">
                     <Button 
                         type='submit' 
                         onClick={handleClick} 
@@ -60,4 +74,4 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
     </div>
     )
 }
-export default Sidebar
+export default AdminSidebar
