@@ -1,0 +1,73 @@
+body.active-modal {
+    overflow-y: hidden;
+}
+.welcome {
+    width: 100%;
+}
+.mobile-welcome {
+    width: 100%;
+}
+.desktop-welcome {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-welcome {
+        display: none;
+    }
+
+    .desktop-welcome, .desktop-welcome-overlay {
+        display: block;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: fixed;
+        .desktop-welcome-overlay {
+            background: rgba(49,49,49,0.8);
+        }
+        .desktop-welcome-content {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, -50%);
+            line-height: 1.4;
+            background: #f1f1f1;
+            padding: 14px 28px;
+            border-radius: 10px;
+            width: 600px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img {
+                width: 100px;
+                height: 100px;
+            }
+            h3 {
+                font-weight: 500;
+                font-size: 28px;
+                line-height: 42px;
+                color: var(--black-color);
+            }
+            p {
+                font-weight: 400;
+                font-size: 18px;
+                line-height: 27px;
+                color: rgba(17, 17, 17, 0.8);
+                text-align: center;
+            }
+            .welcome-btn {
+                width: 109px;
+                height: 62px;
+                background: linear-gradient(286.47deg, #712999 80.38%, rgba(113, 41, 153, 0) 109.18%);
+                border-radius: 10px;
+                margin-top: 12px;
+            }
+        }
+    }
+}

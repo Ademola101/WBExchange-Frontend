@@ -1,4 +1,4 @@
-import './styles/userdashboard.scss'
+import './styles/admindashboard.scss'
 import Input from '../components/Input'
 import Button from '../components/Button'
 import transactions from '../assets/icons/transactions.svg'
@@ -7,14 +7,14 @@ import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
 
-const UserDashboard = () => {
+const AdminDashboard = () => {
     const handleChange = () => {}
     const handleClick = () => {}
 
     return (
-        <div className="user-dashboard">
-            <div className="mobile-user-dashboard"></div>
-            <div className="desktop-user-dashboard">
+        <div className="admin-dashboard">
+            <div className="mobile-admin-dashboard"></div>
+            <div className="desktop-admin-dashboard">
                 <header>
                     <h3>User Dashboard</h3>
                 </header>
@@ -78,11 +78,11 @@ const UserDashboard = () => {
                         <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
                     </form>
                 </section>
-                <section className='desktop-user-transactions'>
+                <section className='desktop-admin-transactions'>
                     <Table />
                 </section>
             </div>
         </div>
     )
 }
-export default UserDashboard
+export default AdminDashboard

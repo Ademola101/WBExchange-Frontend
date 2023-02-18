@@ -6,7 +6,7 @@ import TransactionHistory from "./TransactionHistory"
 import UserDashboard from "./UserDashboard"
 
 const UserDashboardRoutes = () => {
-    const [isActive, setIsActive] = useState(false)
+    const [isActive, setIsActive] = useState(true)
     return (
         <div className="user-routes">
             <Sidebar isActive={isActive} />
