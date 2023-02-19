@@ -26,7 +26,44 @@ const AdminLogin = () => {
 
     return (
         <div className='admin-login'>
-            <div className="mobile-admin-login"></div>
+            <div className="mobile-admin-login">
+                <form autoComplete='off'>
+                    <label htmlFor="email">
+                        <Input
+                            type="email"
+                            placeholder="Enter your email"
+                            id="email"
+                            name="email"
+                            // value=""
+                            // variant='white'
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label htmlFor="password">
+                        <Input
+                            type="password"
+                            placeholder="Enter your password"
+                            id="password"
+                            name="password"
+                            onChange={handleChange}
+                            required
+                        />
+                    </label>
+                    <label htmlFor='checkbox'>
+                        <input type='checkbox' />
+                        <b>Remember me</b>
+                    </label>
+                    <Button 
+                        // className='signin-button'
+                        variant='purple'
+                        onClick={handleClick}
+                        type="submit"
+                    >
+                       <img src={login} alt='sign in icon' /> Sign in
+                    </Button>
+                </form>
+            </div>
             <div className="desktop-admin-login">
                 <form autoComplete='off'>
                     <label htmlFor="email">
@@ -65,7 +102,7 @@ const AdminLogin = () => {
                     </Button>
                 </form>
             </div>
-            {isModalOpen && <AdminWelcome />}
+        {isModalOpen && <AdminWelcome />}
         </div>
     )
 }

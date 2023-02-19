@@ -13,7 +13,23 @@ const AdminWelcome = () => {
 
     return (
         <div className="welcome">
-            <div className="mobile-welcome"></div>
+            <div className="mobile-welcome">
+                <div className='mobile-welcome-overlay'></div>
+                <div className='mobile-welcome-content'>
+                    <>
+                        <img src={welcome} alt=" welcome back icon" />
+                    </>
+                    <div>
+                        <h3>Welcome back, Joe</h3>
+                        <p>Successfully!</p>
+                    </div>
+                    <Button 
+                        type='submit' 
+                        // className='welcome-btn' 
+                        variant='purple'
+                        onClick={handleClick}>OK</Button>
+                </div>
+                </div>
             <div className="desktop-welcome">
                 <div className='desktop-welcome-overlay'></div>
                 <div className='desktop-welcome-content'>
