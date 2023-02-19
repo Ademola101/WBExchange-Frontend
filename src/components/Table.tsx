@@ -15,38 +15,38 @@ import Spinner from './Spinner'
 const Table = () => {
     const { data: mockData, isLoading, error } = useQuery('transactions', () => getTransactions())
     console.log(mockData)
-    const columns: any = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => [...mockData], [mockData])
-    // @ts-ignore
-    const { 
-            getTableProps, 
-            getTableBodyProps, 
-            headerGroups, 
-            rows, 
-            prepareRow, 
-            // @ts-ignore
-            setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
-            // @ts-ignore
-            state: { pageIndex, pageSize, globalFilter } } = useTable({
-        columns,
-        data,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination,
-    )
+    // const columns: any = useMemo(() => COLUMNS, [])
+    // const data = useMemo(() => [...mockData], [mockData])
+    // // @ts-ignore
+    // const { 
+    //         getTableProps, 
+    //         getTableBodyProps, 
+    //         headerGroups, 
+    //         rows, 
+    //         prepareRow, 
+    //         // @ts-ignore
+    //         setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
+    //         // @ts-ignore
+    //         state: { pageIndex, pageSize, globalFilter } } = useTable({
+    //     columns,
+    //     data,
+    // },
+    // useGlobalFilter,
+    // useSortBy,
+    // usePagination,
+    // )
 
-    const handleClick = () => {}
+    // const handleClick = () => {}
 
-    if(isLoading) {
-        return <Spinner />
-    }
+    // if(isLoading) {
+    //     return <Spinner />
+    // }
 
 
     return (
         <div className='table'>
             <div className='mobile-table'></div>
-            <div className="desktop-table">
+            {/* <div className="desktop-table">
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
@@ -82,27 +82,31 @@ const Table = () => {
                                 })
                             }
                         </tbody>
-                        {/* <tfoot>
+                        <tfoot>
                             <tr>
+                                <td colSpan={5}>© 2023 N-Tech System</td>
                                 <td>
-                                    <span>© 2023 N-Tech System</span>
-                                    <div>
-                                        <Button type='submit' onClick={() => previousPage()} disabled={!canPreviousPage}>
-                                            <img src={backArrow} alt='backward pagination arrow' />
-                                        </Button>
-                                        <div>
-                                            <strong>{pageIndex + 1} of {pageOptions.length}</strong>
-                                        </div>
-                                        <Button type='submit' onClick={() => nextPage()} disabled={!canNextPage}>
-                                            <img src={forwardArrow} alt='forward pagination arrow' />
-                                        </Button>
-                                    </div>
+                                    <button  
+                                        type='submit' 
+                                        onClick={() => previousPage()} 
+                                        disabled={!canPreviousPage}
+                                    >
+                                        <img src={backArrow} alt='backward pagination arrow' />
+                                    </button>
+                                        <span>{pageIndex + 1}</span> of <span>{pageOptions.length}</span>
+                                    <button  
+                                        type='submit' 
+                                        onClick={() => nextPage()} 
+                                        disabled={!canNextPage}
+                                    >
+                                        <img src={forwardArrow} alt='forward pagination arrow' />
+                                    </button>
                                 </td>
                             </tr>
-                        </tfoot> */}
+                        </tfoot>
                     </table>
                 </main>
-            </div>
+            </div> */}
         </div>
     )
 }

@@ -5,6 +5,64 @@
 }
 .mobile-all-users {
     width: 100%;
+    padding: 20px;
+    header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    main {
+        display: flex;
+        margin: 3rem 0;
+        table {
+            border-spacing: 0;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--white-text);
+            width: 100%;
+            thead {
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 18px;
+                color: #878787;
+                text-transform: uppercase;
+            }
+            tbody {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: #414141;
+            }
+            tfoot > tr > td {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                > div {
+                    display: flex;
+                    flex-direction: row;
+                    > span {
+                        display: inline-block;
+                    }
+                }
+            }
+            // tr:last-child > td {
+            //     border-bottom: 0;
+            // }
+            th,
+            td {
+                margin: 0;
+                padding: 0.5rem;
+                border-bottom: 1px solid #D2D2D2;
+                padding: 20px;
+                text-align: left;
+                // border-right: 1px solid black;
+            }
+            th:last-child ,
+            td:last-child {
+                border-right: 0;
+            }
+        }
+    }
 }
 .desktop-all-users {
     display: none;

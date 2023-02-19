@@ -7,11 +7,28 @@ import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
 import Button from './Button'
 
+import { useState } from 'react'
+
 interface ISidebarProps {
     isActive: boolean
 }
 
 const Sidebar = ({ isActive }: ISidebarProps) => {
+    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
+    const [menu_class, setMenuClass] = useState("menu hidden")
+    const [isMenuClicked, setIsMenuClicked] = useState(false)
+
+    const updateMenu = () => {
+        if(!isMenuClicked) {
+            setBurgerClass("burger-bar clicked")
+            setMenuClass("menu visible")
+        }
+        else {
+            setBurgerClass("burger-bar unclicked")
+            setMenuClass("menu hidden")
+        }
+        setIsMenuClicked(!isMenuClicked)
+    }
 
     const handleClick = () => {}
 

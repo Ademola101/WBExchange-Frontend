@@ -25,7 +25,39 @@ const Login = () => {
 
     return (
         <div className="login">
-            <div className="mobile-login"></div>
+            <div className="mobile-login">
+                <header>
+                    <>
+                        <img src={logo} alt="WbExchange Logo" />
+                    </>
+                    <span>
+                        <p>Welcome Back!</p>
+                    </span>
+                </header>
+                <section className='mobile-login-form'>
+                    <span>
+                        <button
+                            className={activeTab === 'user' ? 'active' : ''}
+                            onClick={handleUserLoginClick}
+                            type="submit"
+                        >
+                            <img src={user} alt="User sign in icon" />
+                            User Sign in
+                        </button>
+                        <button 
+                            className={activeTab === 'admin' ? 'active' : ''}
+                            onClick={handleAdminLoginClick}
+                            type="submit"
+                        >
+                            <img src={admin} alt="Admin sign in icon" />
+                            Admin Sign in
+                        </button>
+                    </span>
+                    <div>
+                        {activeTab === 'user' ? <UserLogin /> : <AdminLogin />}
+                    </div>
+                </section>
+            </div>
             <div className="desktop-login">
                 <header>
                     <>
