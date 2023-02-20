@@ -11,9 +11,16 @@
         justify-content: center;
         align-items: center;
     }
+    main::-webkit-scrollbar {
+        display: none;
+    }
     main {
         display: flex;
         margin: 3rem 0;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: auto;
         table {
             border-spacing: 0;
             border: none;
