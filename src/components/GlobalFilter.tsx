@@ -13,7 +13,25 @@ const GlobalFilter = ({ globalFilter, setGlobalFilter }: any) => {
 
     return (
         <div className="global-filter">
-            <div className="mobile-global-filter"></div>
+            <div className="mobile-global-filter">
+                <div>
+                    <p>Recent Transactions</p>
+                </div>
+                <div style={{width: '292px'}}>
+                    <Input
+                        type="search"
+                        placeholder="Search..."
+                        id="password"
+                        name="password"
+                        value={value || ""}
+                        onChange={(event: any) => {
+                            setValue(event?.target.value)
+                            handleChange(event.target.value)
+                        }}
+                        variant='search'
+                    />
+                </div>
+            </div>
             <div className="desktop-global-filter">
                 <div>
                     <p>Recent Transactions</p>

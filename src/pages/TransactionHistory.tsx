@@ -5,7 +5,9 @@ const TransactionHistory = () => {
 
     return (
         <div className="transaction-history">
-            <div className="mobile-transaction-history"></div>
+            <div className="mobile-transaction-history">
+                <Table />
+            </div>
             <div className="desktop-transaction-history">
                 <header>
                     <span>Transaction History</span>

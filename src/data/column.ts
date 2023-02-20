@@ -1,7 +1,10 @@
+import { format } from "date-fns";
+
 export interface IColumns {
     Header: string
     accessor: string
     disableFilters?: boolean
+    Cell?: any
 }
 
 export const COLUMNS: IColumns[] = [
@@ -11,25 +14,28 @@ export const COLUMNS: IColumns[] = [
         disableFilters: true
     },
     {
-        Header: "First Name",
-        accessor: "first_name",
+        Header: "Amount",
+        accessor: "amount",
+    },
+    {
+        Header: "Coin Amount",
+        accessor: "coin",
         disableFilters: true
     },
     {
-        Header: "Last Name",
-        accessor: "last_name",
+        Header: "User",
+        accessor: "lastName",
     },
     {
-        Header: "Email",
-        accessor: "email",
-    },
-    {
-        Header: "Amount",
-        accessor: "age",
+        Header: "Date",
+        accessor: "date",
+        Cell: ({ value }: any) => {
+            return format(new Date(value), "dd/MM/yyyy");
+          },
     },
     {
         Header: "Time",
-        accessor: "date_of_birth",
+        accessor: "time",
     },
     // {
     //     Header: "User",
