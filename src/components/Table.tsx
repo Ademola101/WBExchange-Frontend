@@ -95,6 +95,9 @@ const Table = () => {
                                         type='submit' 
                                         onClick={() => previousPage()} 
                                         disabled={!canPreviousPage}
+                                        style={{
+                                            cursor: 'pointer',
+                                        }}
                                     >
                                         <img src={backArrow} alt='backward pagination arrow' />
                                     </button>
@@ -103,6 +106,9 @@ const Table = () => {
                                         type='submit' 
                                         onClick={() => nextPage()} 
                                         disabled={!canNextPage}
+                                        style={{
+                                            cursor: 'pointer',
+                                        }}
                                     >
                                         <img src={forwardArrow} alt='forward pagination arrow' />
                                     </button>

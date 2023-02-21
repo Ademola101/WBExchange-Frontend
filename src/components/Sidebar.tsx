@@ -91,7 +91,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 <img src={logo} alt="logo" className="eform-logo"/>
                 <hr />
             </header>
-            <NavLink to="user" className="nav-links">
+            <NavLink to="/user" className="nav-links">
                 <div className="icon-container">
                     <img src={dashboard} alt='dashboard icon'/>
                 </div>
