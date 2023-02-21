@@ -49,6 +49,7 @@ const AllUsers = () => {
                                             border: 'none',
                                             outline: 'none',
                                             margin: '10px',
+                                            cursor: 'pointer',
                                         }}
                                     >
                                         Delete
@@ -65,6 +66,7 @@ const AllUsers = () => {
                                             border: 'none',
                                             outline: 'none',
                                             margin: '10px',
+                                            cursor: 'pointer',
                                         }}
                                     >
                                         Suspend

@@ -17,9 +17,10 @@ interface IAdminSidebarProps {
 }
 
 const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
-    const [activeMenu, setActiveMenu] = useState(true);
-    const [screenSize, setScreenSize] = useState<any | null>(null);
-    const [openMenu, setOpenMenu] = useState(false);
+    const [activeMenu, setActiveMenu] = useState(true)
+    const [screenSize, setScreenSize] = useState<any | null>(null)
+    const [openMenu, setOpenMenu] = useState(false)
+
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
@@ -36,7 +37,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
             setActiveMenu(true);
           }
         }, [screenSize]),
-    ]);
+    ])
 
     const handleClick = () => {}
 
@@ -52,7 +53,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         <img src={logo} alt="logo" className="eform-logo"/>
                         <hr />
                     </header>
-                    <NavLink to="/admin" className="nav-links">
+                    <NavLink to="/admin" className="nav-links" style={({ isActive }) => ({ color: isActive ? "white" : ""})}>
                         <div className="icon-container">
                             <img src={dashboard} alt='dashboard icon'/>
                         </div>

@@ -7,6 +7,7 @@
 .mobile-admin-sidebar {
     width: 100%;
     nav {
+        position: fixed;
         width: 100vw;
         background-color: var(--primary-color);
         display: flex;
@@ -14,6 +15,7 @@
         justify-content: space-between;
         align-items: center;
         padding: 1em;
+        z-index: 9999;
         button {
             outline: none;
             border: none;
@@ -23,14 +25,14 @@
     }
     section {
         display: block;
-        position: absolute;
+        position: fixed;
         left: 0;
         top: 4.5em;
         font-size: 14px;
         line-height: 16px;
         background-color: var(--primary-color);
         width: 272px;
-        height: 100vh;
+        height: 100%;
         z-index: 9999;
         padding: 10px 20px;
         header {
@@ -72,12 +74,14 @@
             }
         }
         footer {
+            position: fixed;
+            bottom: 0;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
             align-items: flex-start;
             row-gap: 20px;
-            padding-top: 7rem;
+            // padding-top: 7rem;
             margin: 0 5px;
             .desktop-admin-user-profile {
                 display: flex;

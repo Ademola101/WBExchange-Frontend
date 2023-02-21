@@ -83,7 +83,7 @@ const AdminDashboard = () => {
             </div>
             <div className="desktop-admin-dashboard">
                 <header>
-                    <h3>User Dashboard</h3>
+                    <h3>Admin Dashboard</h3>
                 </header>
                 <section className='desktop-overview'>
                     <p>Overview</p>
