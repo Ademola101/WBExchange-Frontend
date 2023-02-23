@@ -7,6 +7,7 @@ import createUser from '../assets/icons/createUser.svg'
 import allUser from '../assets/icons/allUser.svg'
 import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
+import report from '../assets/icons/report.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 import Button from './Button'
 
@@ -83,6 +84,12 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         </div>
                         <span>Change Password</span>
                     </NavLink>
+                    <NavLink to="report" className="nav-links">
+                        <div className="icon-container">
+                            <img src={report} alt='key icon'/>
+                        </div>
+                        <span>Report</span>
+                    </NavLink>
                     <footer className="admin-hamburger-logout">
                         <div className="desktop-admin-user-profile">
                             <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
@@ -135,6 +142,12 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                     <img src={key} alt='key icon'/>
                 </div>
                 <span>Change Password</span>
+            </NavLink>
+            <NavLink to="report" className="nav-links">
+                <div className="icon-container">
+                    <img src={report} alt='key icon'/>
+                </div>
+                <span>Report</span>
             </NavLink>
             <footer className="desktop-admin-sidebar-logout">
                 <div className="desktop-admin-user-profile">
