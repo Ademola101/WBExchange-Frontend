@@ -30,7 +30,8 @@ const newPerson = (): Person => {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       age: faker.datatype.number(40),
-      date: faker.date.past(10),
+      // date: faker.date.past(10),
+      date: faker.date.between('2023-02-01T00:00:00.000Z', '2023-02-28T00:00:00.000Z'),
       time: faker.datatype.number(1) + ' minute ago',
       visits: faker.datatype.number(1000),
       status: faker.helpers.shuffle<Person['status']>([
