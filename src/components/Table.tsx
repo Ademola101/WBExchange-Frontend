@@ -6,11 +6,11 @@ import GlobalFilter from './GlobalFilter'
 import Button from './Button'
 import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
+import Spinner from './Spinner'
 
 import { useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
 import { useQuery } from 'react-query'
-import Spinner from './Spinner'
 
 
 const Table = () => {
