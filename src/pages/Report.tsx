@@ -9,11 +9,11 @@ import { SetStateAction, useMemo, useState } from 'react'
 import { useTable, usePagination, Row } from 'react-table'
 
 const Report = () => {
-    const [startDate, setStartDate] = useState(new Date())
-    const [endDate, setEndDate] = useState(new Date())
-    const columns: any = useMemo(() => COLUMNS, [])
-    const [data, setData] = useState(() => mockData(5000))
-    const refreshData = () => setData(() => mockData(5000))
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
+    const columns: any = useMemo(() => COLUMNS, []);
+    const [data, setData] = useState(() => mockData(5000));
+    const refreshData = () => setData(() => mockData(5000));
 
     const { 
             getTableProps, 
@@ -44,7 +44,7 @@ const Report = () => {
         startDate: startDate,
         endDate: endDate,
         key: 'selection',
-    }
+    };
 
     return (
         <div className="report">
