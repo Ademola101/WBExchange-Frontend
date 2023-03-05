@@ -2,15 +2,28 @@ import './styles/adminlogin.scss'
 import Input from './Input'
 import Button from './Button'
 import Welcome from './Welcome'
+import AdminWelcome from './AdminWelcome'
 import login from '../assets/icons/login.svg'
 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import AdminWelcome from './AdminWelcome'
+import { useMutation } from 'react-query'
 
 const AdminLogin = () => {
     const navigate = useNavigate()
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [data, setData] = useState({
+        email: '',
+        password: '',
+    })
+    const { mutate, isLoading } = useMutation(adminlogin, {
+        onError: () => {
+            console.log("email or password incorrect")
+        },
+        onSuccess: (res) => {
+            
+        }
+    })
     
     const handleChange = () => {}
 
