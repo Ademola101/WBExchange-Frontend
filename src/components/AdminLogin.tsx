@@ -4,10 +4,17 @@ import Button from './Button'
 import Welcome from './Welcome'
 import AdminWelcome from './AdminWelcome'
 import login from '../assets/icons/login.svg'
+import { adminlogin } from '../services/adminlogin'
 
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useMutation } from 'react-query'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { createBrowserHistory } from "history";
+
+const browserHistory = createBrowserHistory()
+const MySwal = withReactContent(Swal)
 
 const AdminLogin = () => {
     const navigate = useNavigate()
@@ -21,14 +28,63 @@ const AdminLogin = () => {
             console.log("email or password incorrect")
         },
         onSuccess: (res) => {
-            
+            if(res.success && res.result.user.role === "admin") {
+                // navigate('/')
+                setTimeout(() => {
+                    navigate('/user')
+                }, 4000)
+                const { user, token } = res
+
+                localStorage.setItem('edu-earn-token', token)
+                localStorage.setItem('edu-earn-user', JSON.stringify(user.name)) 
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                })
+                // MySwal.fire({
+                //     html: (
+                //     //   <HistoryRouter history={browserHistory}>
+                //         <Link to='user' onClick={() => Swal.close()}>
+                //           Welcome
+                //         </Link>
+                //     //   </HistoryRouter>
+                //     ),
+                //   })
+            }
+            else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'email or password incorrect',
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+            }
         }
     })
     
-    const handleChange = () => {}
+    const handleChange = (event: any) => {
+        setData({
+            ...data,
+            [event.target.name]: event.target.value
+          })
+    }
 
-    const handleClick = () => {
-        setIsModalOpen(!isModalOpen)
+    const handleClick = (event: any) => {
+        event.preventDefault()
+        // setIsModalOpen(!isModalOpen)
+        mutate(data)
     }
 
     if(isModalOpen) {
@@ -120,3 +176,7 @@ const AdminLogin = () => {
     )
 }
 export default AdminLogin
+
+function admin(variables: void): Promise<unknown> {
+    throw new Error('Function not implemented.')
+}
