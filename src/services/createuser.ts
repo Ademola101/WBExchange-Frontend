@@ -1,18 +1,21 @@
 import axios from 'axios'
 import { BASE_URL } from '../constant'
 
-type admin = {
+type newUser = {
+    name: string
     email: string
     password: string
+    password_confirmation: string
+    role: string
 }
 
-export const adminlogin = async(data: admin) => {
+export const createUser = async (data: newUser) => {
     try {
         const response = await axios.post(`${BASE_URL}/api/login`, data)
         return response.data
     }
-    catch(err) {
+    catch(error) {
         //@ts-expect-error
-        return err.response.data
+        return error.response.data
     }
 }

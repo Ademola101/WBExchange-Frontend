@@ -7,6 +7,7 @@ import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 import Button from './Button'
+import { useUser } from '../hooks/user'
 
 import { useEffect, useState } from 'react'
 
@@ -18,6 +19,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState<any | null>(null);
     const [openMenu, setOpenMenu] = useState(false);
+    // const { name }
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);

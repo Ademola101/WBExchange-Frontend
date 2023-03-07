@@ -5,6 +5,7 @@ import Welcome from './Welcome'
 import AdminWelcome from './AdminWelcome'
 import login from '../assets/icons/login.svg'
 import { adminlogin } from '../services/adminlogin'
+import { useAuth } from '../hooks/auth'
 
 import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -23,20 +24,28 @@ const AdminLogin = () => {
         email: '',
         password: '',
     })
+    const { setIsLoggedIn } = useAuth()
     const { mutate, isLoading } = useMutation(adminlogin, {
         onError: () => {
-            console.log("email or password incorrect")
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+              
+            Toast.fire({
+                icon: 'error',
+                title: 'An error occured'
+            })
         },
         onSuccess: (res) => {
-            if(res.success && res.result.user.role === "admin") {
-                // navigate('/')
-                setTimeout(() => {
-                    navigate('/user')
-                }, 4000)
-                const { user, token } = res
-
-                localStorage.setItem('edu-earn-token', token)
-                localStorage.setItem('edu-earn-user', JSON.stringify(user.name)) 
+            if(res.success === true && res.result.user.role === "admin") {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -47,27 +56,28 @@ const AdminLogin = () => {
                       toast.addEventListener('mouseenter', Swal.stopTimer)
                       toast.addEventListener('mouseleave', Swal.resumeTimer)
                     }
-                  })
+                })
                   
-                  Toast.fire({
+                Toast.fire({
                     icon: 'success',
                     title: 'Signed in successfully'
                 })
-                // MySwal.fire({
-                //     html: (
-                //     //   <HistoryRouter history={browserHistory}>
-                //         <Link to='user' onClick={() => Swal.close()}>
-                //           Welcome
-                //         </Link>
-                //     //   </HistoryRouter>
-                //     ),
-                //   })
+
+                const { result } = res
+                const { token, user } = result
+                console.log(result)
+                localStorage.setItem('wb-token', JSON.stringify(token))
+                localStorage.setItem('wb-user', JSON.stringify(user))
+                setIsLoggedIn(true)
+                setTimeout(() => {
+                    navigate('/admin')
+                }, 4000)
             }
             else {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'email or password incorrect',
+                    text: 'Email or password incorrect',
                     // footer: '<a href="">Why do I have this issue?</a>'
                 })
             }
@@ -92,6 +102,8 @@ const AdminLogin = () => {
       } else {
         document.body.classList.remove('active-modal')
     }
+
+    const disabled = !data.email || !data.password || isLoading
 
     return (
         <div className='admin-login'>
@@ -128,6 +140,8 @@ const AdminLogin = () => {
                         variant='purple'
                         onClick={handleClick}
                         type="submit"
+                        isLoading={isLoading}
+                        disabled={disabled}
                     >
                        <img src={login} alt='sign in icon' /> Sign in
                     </Button>
@@ -166,12 +180,14 @@ const AdminLogin = () => {
                         variant='purple'
                         onClick={handleClick}
                         type="submit"
+                        isLoading={isLoading}
+                        disabled={disabled}
                     >
                        <img src={login} alt='sign in icon' /> Sign in
                     </Button>
                 </form>
             </div>
-        {isModalOpen && <AdminWelcome />}
+        {/* {isModalOpen && <AdminWelcome />} */}
         </div>
     )
 }

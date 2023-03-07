@@ -10,7 +10,7 @@ export interface IColumns {
 export const COLUMNS: IColumns[] = [
     {
         Header: "Transaction ID",
-        accessor: "id",
+        accessor: "transId",
         disableFilters: true
     },
     {
@@ -19,19 +19,19 @@ export const COLUMNS: IColumns[] = [
     },
     {
         Header: "Coin Amount",
-        accessor: "coin",
+        accessor: "amountCoin",
         disableFilters: true
     },
     {
         Header: "User",
-        accessor: "lastName",
+        accessor: "user",
     },
     {
         Header: "Date",
-        accessor: "date",
-        Cell: ({ value }: any) => {
-            return format(new Date(value), "dd/MM/yyyy");
-          },
+        accessor: "updated_at",
+        // Cell: ({ value }: any) => {
+        //     return format(new Date(value), "dd/MM/yyyy");
+        //   },
     },
     {
         Header: "Time",
@@ -42,8 +42,11 @@ export const COLUMNS: IColumns[] = [
     //     accessor: "user",
     // },
     // {
-    //     Header: "Time/Date",
-    //     accessor: "2023-02-01 09:51:05",
+    //     Header: "Date",
+    //     accessor: "date",
+    //     Cell: ({ value }: any) => {
+    //         return format(new Date(value), "dd/MM/yyyy");
+    //       },
     // },
     // {
     //     Header: "Time",

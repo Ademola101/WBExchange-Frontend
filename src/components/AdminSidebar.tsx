@@ -10,6 +10,7 @@ import logout from '../assets/icons/logout.svg'
 import report from '../assets/icons/report.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 import Button from './Button'
+import { useUser } from '../hooks/user'
 
 import { useEffect, useState } from 'react'
 
@@ -21,6 +22,8 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
     const [activeMenu, setActiveMenu] = useState(true)
     const [screenSize, setScreenSize] = useState<any | null>(null)
     const [openMenu, setOpenMenu] = useState(false)
+    const { name } = useUser()
+    console.log(name)
 
 
     useEffect(() => {
@@ -93,7 +96,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                     <footer className="admin-hamburger-logout">
                         <div className="desktop-admin-user-profile">
                             <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
-                            <span>Emmanuel</span>
+                            <span>{name}</span>
                         </div>
                         <div className="mobile-admin-logout-button" style={{width: '200px',}}>
                             <Button 
@@ -152,7 +155,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
             <footer className="desktop-admin-sidebar-logout">
                 <div className="desktop-admin-user-profile">
                     <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
-                    <span>Emmanuel</span>
+                    <span>{name}</span>
                 </div>
                 <div className="desktop-admin-logout-button">
                     <Button 
