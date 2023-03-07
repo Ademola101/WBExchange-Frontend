@@ -14,33 +14,33 @@ import { useQuery } from 'react-query'
 
 
 const Table = () => {
-    // const { data: mockData, isLoading, error } = useQuery('transactions', () => getTransactions())
-    // console.log(mockData)
-    // const columns: any = useMemo(() => COLUMNS, [])
+    const { data: mockData, isLoading, error } = useQuery('transactions', () => getTransactions())
+    console.log(mockData)
+    const columns: any = useMemo(() => COLUMNS, [])
     // const data = useMemo(() => [...mockData], [mockData])
 
-    const columns: any = useMemo(() => COLUMNS, [])
-    const [data, setData] = useState(() => mockData(5000))
-    const refreshData = () => setData(() => mockData(5000))
-    console.log(refreshData)
+    // const columns: any = useMemo(() => COLUMNS, [])
+    // const [data, setData] = useState(() => mockData(5000))
+    // const refreshData = () => setData(() => mockData(5000))
+    // console.log(refreshData)
     // @ts-ignore
-    const { 
-            getTableProps, 
-            getTableBodyProps, 
-            headerGroups, 
-            rows, 
-            prepareRow, 
-            // @ts-ignore
-            setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
-            // @ts-ignore
-            state: { pageIndex, pageSize, globalFilter } } = useTable({
-        columns,
-        data,
-    },
-    useGlobalFilter,
-    useSortBy,
-    usePagination,
-    )
+    // const { 
+    //         getTableProps, 
+    //         getTableBodyProps, 
+    //         headerGroups, 
+    //         rows, 
+    //         prepareRow, 
+    //         // @ts-ignore
+    //         setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
+    //         // @ts-ignore
+    //         state: { pageIndex, pageSize, globalFilter } } = useTable({
+    //     columns,
+    //     data,
+    // },
+    // useGlobalFilter,
+    // useSortBy,
+    // usePagination,
+    // )
 
     const handleClick = () => {}
 
@@ -51,7 +51,7 @@ const Table = () => {
 
     return (
         <div className='table'>
-            <div className='mobile-table'>
+            {/* <div className='mobile-table'>
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
@@ -178,7 +178,7 @@ const Table = () => {
                         </tfoot>
                     </table>
                 </main>
-            </div>
+            </div> */}
         </div>
     )
 }
