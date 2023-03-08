@@ -6,10 +6,22 @@ import amount from '../assets/icons/amount.svg'
 import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
+import { getUserquery } from '../services/userquery'
+
+import { useQuery } from 'react-query'
 
 const UserDashboard = () => {
+    const { data, isLoading, error, isSuccess } = useQuery('userquery', getUserquery, {
+        keepPreviousData: true,
+        staleTime: Infinity,
+    })
+    console.log(data)
     const handleChange = () => {}
     const handleClick = () => {}
+
+    // const totalTransactions = data.result.map((results: any) => {
+    //     return results
+    // })
 
     return (
         <div className="user-dashboard">

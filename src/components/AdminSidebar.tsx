@@ -1,5 +1,4 @@
 import './styles/adminsidebar.scss'
-import { NavLink } from "react-router-dom"
 import logo from '../assets/icons/logo.svg'
 import dashboard from '../assets/icons/dashboard.svg'
 import cards from '../assets/icons/cards.svg'
@@ -11,19 +10,101 @@ import report from '../assets/icons/report.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 import Button from './Button'
 import { useUser } from '../hooks/user'
+import { useAuth } from '../hooks/auth'
+import { signout } from '../services/signout'
 
+import { NavLink, useNavigate } from "react-router-dom"
 import { useEffect, useState } from 'react'
+import { useMutation } from 'react-query'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { createBrowserHistory } from "history";
+
+const browserHistory = createBrowserHistory()
+const MySwal = withReactContent(Swal)
 
 interface IAdminSidebarProps {
     isActive: boolean
 }
 
 const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
+    const navigate = useNavigate()
     const [activeMenu, setActiveMenu] = useState(true)
     const [screenSize, setScreenSize] = useState<any | null>(null)
     const [openMenu, setOpenMenu] = useState(false)
     const { name } = useUser()
-    console.log(name)
+    const { setIsLoggedIn } = useAuth()
+    const { mutate, isLoading } = useMutation(signout, {
+        onError: () => {
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+              
+            Toast.fire({
+                icon: 'error',
+                title: 'An error occured'
+            })
+        },
+        onSuccess: (res) => {
+            if(res.success === true) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                  
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                })
+
+                localStorage.removeItem('wb-admin-token')
+                localStorage.removeItem('wb-admin-user')
+                setIsLoggedIn(false)
+
+                setTimeout(() => {
+                    navigate('/admin')
+                }, 3000)
+
+            } else {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+                  
+                Toast.fire({
+                    icon: 'error',
+                    title: `${res.message}`,
+                })
+            }
+        }
+    })
+
+    const handleClick = (event: any) => {
+        event.preventDefault()
+        mutate()
+    }
 
 
     useEffect(() => {
@@ -43,7 +124,6 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
         }, [screenSize]),
     ])
 
-    const handleClick = () => {}
 
     return (
         <div className={isActive ? 'sidebar__container--active' : 'sidebar__container'}>

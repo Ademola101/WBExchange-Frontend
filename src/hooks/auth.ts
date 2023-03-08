@@ -4,7 +4,7 @@ export const useAuth = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false)
 
     useEffect(() => {
-        const token = localStorage.getItem('wb-token')
+        const token = localStorage.getItem('wb-admin-token')
         if(token) {
             setIsLoggedIn(true)
             return

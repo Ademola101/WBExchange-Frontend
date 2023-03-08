@@ -4,6 +4,7 @@ import Button from './Button'
 import Welcome from './Welcome'
 import login from '../assets/icons/login.svg'
 import { userlogin } from '../services/userlogin'
+import { useAuth } from '../hooks/auth'
 
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -22,6 +23,7 @@ const UserLogin = () => {
         email: '',
         password: '',
     })
+    const { setIsLoggedIn } = useAuth()
     const { mutate, isLoading } = useMutation(userlogin, {
         onError: () => {
             const Toast = Swal.mixin({
@@ -42,7 +44,7 @@ const UserLogin = () => {
             })
         },
         onSuccess: (res) => {
-            if(res.success === true && res.result.user.role === "user") {
+            if(res.success === true && res.result.user.role === "Staff") {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',
@@ -59,7 +61,12 @@ const UserLogin = () => {
                     icon: 'success',
                     title: 'Signed in successfully'
                 })
-
+                const { result } = res
+                const { token, user } = result
+                console.log(result)
+                localStorage.setItem('wb-user-token', JSON.stringify(token))
+                localStorage.setItem('wb-staff-user', JSON.stringify(user))
+                setIsLoggedIn(true)
                 setTimeout(() => {
                     navigate('/user')
                 }, 4000)

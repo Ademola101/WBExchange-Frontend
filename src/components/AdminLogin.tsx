@@ -66,8 +66,8 @@ const AdminLogin = () => {
                 const { result } = res
                 const { token, user } = result
                 console.log(result)
-                localStorage.setItem('wb-token', JSON.stringify(token))
-                localStorage.setItem('wb-user', JSON.stringify(user))
+                localStorage.setItem('wb-admin-token', JSON.stringify(token))
+                localStorage.setItem('wb-admin-user', JSON.stringify(user))
                 setIsLoggedIn(true)
                 setTimeout(() => {
                     navigate('/admin')
