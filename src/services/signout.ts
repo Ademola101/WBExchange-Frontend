@@ -7,18 +7,17 @@ interface IToken {
 
 const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
 
-console.log(token)
-export const getTransactions = async () => {
-    try {
-        const response = await axios.get(`${BASE_URL}/api/alltransaction`, {
+export const signout = async() => {
+    try{
+        const response = await axios.post(`${BASE_URL}/api/logout`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         })
         return response.data
     }
-    catch(err) {
+    catch(error) {
         //@ts-expect-error
-        return err.response.data
+        return error.response.data
     }
 }

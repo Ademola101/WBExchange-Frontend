@@ -9,9 +9,19 @@ type newUser = {
     role: string
 }
 
+interface IToken {
+    token: string | null
+}
+
+const token = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+
 export const createUser = async (data: newUser) => {
     try {
-        const response = await axios.post(`${BASE_URL}/api/login`, data)
+        const response = await axios.post(`${BASE_URL}/api/register`, data, {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
         return response.data
     }
     catch(error) {

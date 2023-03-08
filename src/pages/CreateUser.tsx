@@ -7,6 +7,7 @@ import { createUser } from '../services/createuser'
 import { useMutation, useQueryClient } from 'react-query'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
+import toast from 'react-hot-toast'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
@@ -45,9 +46,6 @@ const CreateUser = () => {
                     title: 'User registered successfully'
                 })
 
-                setTimeout(() => {
-                    navigate('/admin')
-                }, 4000)
             }
             else {
                 Swal.fire({
@@ -85,6 +83,24 @@ const CreateUser = () => {
     }
     const handleClick = (event: any) => {
         event.preventDefault()
+        if(data.password_confirmation !== data.password) return toast.error("Password do not match!",  {
+            position: 'top-right',
+          })
+        if(data.password.length < 8) return toast.error("Password is too short",  {
+            position: 'top-right',
+          })
+        if(!data.email) return toast.error("Email is required!",  {
+            position: 'top-right',
+          })
+        if(!data.name) return toast.error("Username is required",  {
+            position: 'top-right',
+          })
+        if(!data.role) return toast.error("Please choose a role",  {
+            position: 'top-right',
+          })
+        if(data.password === data.password_confirmation){
+          mutate(data)
+        }
     }
     return (
         <div className="create-user">
@@ -92,7 +108,7 @@ const CreateUser = () => {
                 {/* <header>
                     <h3>Create New User</h3>
                 </header> */}
-                <section className="desktop-form">
+                <section className="mobile-form">
                     <form>
                         <Input
                             type="email"
@@ -100,6 +116,7 @@ const CreateUser = () => {
                             id="email"
                             label="Email address"
                             name="email"
+                            value={data.email}
                             onChange={handleChange}
                             required
                             variant='black'
@@ -107,9 +124,34 @@ const CreateUser = () => {
                         <Input
                             type="text"
                             placeholder="johndoe"
-                            id="username"
+                            id="name"
                             label="Username"
-                            name="username"
+                            name="name"
+                            value={data.name}
+                            onChange={handleChange}
+                            required
+                            variant='black'
+                        />
+                        <label htmlFor="role">
+                            Select Role
+                            <select 
+                                name='role' 
+                                id='role'
+                                value={data.role}
+                                onChange={handleChange}
+                            >
+                                <option value="select role" disabled>Select Role</option>
+                                <option>Staff</option>
+                                <option>Admin</option>
+                            </select>
+                        </label>
+                        <Input
+                            type="password"
+                            placeholder="********"
+                            id="password"
+                            label="Password"
+                            name="password"
+                            value={data.password}
                             onChange={handleChange}
                             required
                             variant='black'
@@ -117,19 +159,21 @@ const CreateUser = () => {
                         <Input
                             type="password"
                             placeholder="********"
-                            id="password"
-                            label="Password"
-                            name="password"
+                            id="password_confirmation"
+                            label="Confirm Password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
                             onChange={handleChange}
                             required
                             variant='black'
                         />
                         <section
-                                style={{width: '136px'}}>
+                                style={{width: '236px'}}>
                             <Button 
                                 type='submit' 
                                 onClick={handleClick} 
                                 variant="gold"
+                                isLoading={isLoading}
                             >
                                 Create User
                             </Button>
@@ -149,6 +193,7 @@ const CreateUser = () => {
                             id="email"
                             label="Email address"
                             name="email"
+                            value={data.email}
                             onChange={handleChange}
                             required
                             variant='black'
@@ -156,9 +201,33 @@ const CreateUser = () => {
                         <Input
                             type="text"
                             placeholder="johndoe"
-                            id="username"
+                            id="name"
                             label="Username"
-                            name="username"
+                            name="name"
+                            value={data.name}
+                            onChange={handleChange}
+                            required
+                            variant='black'
+                        />
+                        <label htmlFor="role">
+                            Select Role
+                            <select name='role'
+                                id='role'
+                                value={data.role}
+                                onChange={handleChange}
+                            >
+                                <option value="select role" disabled>Select Role</option>
+                                <option>Staff</option>
+                                <option>Admin</option>
+                            </select>
+                        </label>
+                        <Input
+                            type="password"
+                            placeholder="********"
+                            id="password"
+                            label="Password"
+                            name="password"
+                            value={data.password}
                             onChange={handleChange}
                             required
                             variant='black'
@@ -166,19 +235,21 @@ const CreateUser = () => {
                         <Input
                             type="password"
                             placeholder="********"
-                            id="password"
-                            label="Password"
-                            name="password"
+                            id="password_confirmation"
+                            label="Confirm Password"
+                            name="password_confirmation"
+                            value={data.password_confirmation}
                             onChange={handleChange}
                             required
                             variant='black'
                         />
                         <section
-                                style={{width: '136px'}}>
+                                style={{width: '236px'}}>
                             <Button 
                                 type='submit' 
                                 onClick={handleClick} 
                                 variant="gold"
+                                isLoading={isLoading}
                             >
                                 Create User
                             </Button>

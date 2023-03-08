@@ -6,6 +6,23 @@
 .mobile-create-user {
     width: 100%;
     padding: 20px;
+    form > label {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        select {
+            width: 100%;
+            background-color: var(--white-text) !important;
+            padding: 15px 20px 15px 20px;
+            outline: none;
+            border: 1px solid rgba(113, 41, 153, 0.5);
+            // color: rgba(113, 41, 153, 0.5);
+            color: var(--black-color);
+            font-size: 1rem;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+    }
 }
 .desktop-create-user {
     display: none;
@@ -28,6 +45,23 @@
                 font-size: 20px;
                 line-height: 30px;
                 color: var(--black-color);
+            }
+        }
+        form > label {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            select {
+                width: 100%;
+                background-color: var(--white-text) !important;
+                padding: 15px 20px 15px 20px;
+                outline: none;
+                border: 1px solid rgba(113, 41, 153, 0.5);
+                // color: rgba(113, 41, 153, 0.5);
+                color: var(--black-color);
+                font-size: 1rem;
+                margin-bottom: 20px;
+                border-radius: 10px;
             }
         }
     }
