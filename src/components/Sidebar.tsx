@@ -58,7 +58,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                         </div>
                         <span>Dashboard</span>
                     </NavLink>
-                    <NavLink to="transaction-history" className="nav-links">
+                    <NavLink to="my-transaction-history" className="nav-links">
                         <div className="icon-container">
                             <img src={cards} alt='payment icon'/>
                         </div>
@@ -99,7 +99,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 </div>
                 <span>Dashboard</span>
             </NavLink>
-            <NavLink to="transaction-history" className="nav-links">
+            <NavLink to="my-transaction-history" className="nav-links">
                 <div className="icon-container">
                     <img src={cards} alt='payment icon'/>
                 </div>

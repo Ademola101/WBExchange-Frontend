@@ -101,6 +101,13 @@ const CreateUser = () => {
         if(data.password === data.password_confirmation){
           mutate(data)
         }
+        setData({
+            name: '',
+            email: '',
+            password: '',
+            password_confirmation: '',
+            role: '',
+        })
     }
     return (
         <div className="create-user">

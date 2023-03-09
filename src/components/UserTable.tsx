@@ -1,9 +1,67 @@
+import './styles/usertable.scss'
+import { mockData, Person } from '../services/mockData'
+import { USERCOLUMNS } from "../data/usercolumn"
+import GlobalFilter from './GlobalFilter'
+import Button from './Button'
+import backArrow from '../assets/icons/backArrow.svg'
+import forwardArrow from '../assets/icons/forwardArrow.svg'
+import Spinner from './Spinner'
+import { getUserTransactions } from '../services/usertransaction'
+import axios from 'axios'
+import { BASE_URL } from '../constant'
+
+import { useEffect, useMemo, useState } from 'react'
+import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
+import { useQuery } from 'react-query'
+
+interface IToken {
+    token: string | null
+}
+
+const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
+
 const UserTable = () => {
+    const { data: results, isLoading, error, isSuccess } = useQuery('usertransactions', () => getUserTransactions())
+    console.log(results)
+  
+    // console.log(results)
+    const columns: any = useMemo(() => USERCOLUMNS, [])
+    const result = results?.result
+    const data = useMemo(() => [...result], [result])
+    //@ts-ignore
+    const { 
+            getTableProps, 
+            getTableBodyProps, 
+            headerGroups, 
+            rows, 
+            prepareRow, 
+            // @ts-ignore
+            setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
+            // @ts-ignore
+            state: { pageIndex, pageSize, globalFilter } } = useTable({
+        columns,
+        data,
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination,
+    )
+
+    if(isLoading) {
+        return <Spinner />
+    }
+    if (error) {
+        return <div>error</div>
+    }
+
+
+    const handleClick = () => {}
+
     return (
         <div className="user-table">
             {isSuccess ?
                 <>
-                <div className='user-mobile-table'>
+                <div className='mobile-user-table'>
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
@@ -70,7 +128,7 @@ const UserTable = () => {
                     </table>
                 </main>
             </div>
-            <div className="user-desktop-table">
+            <div className="desktop-user-table">
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>

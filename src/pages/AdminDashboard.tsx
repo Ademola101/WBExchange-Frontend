@@ -6,8 +6,12 @@ import amount from '../assets/icons/amount.svg'
 import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
+import { getUserquery } from '../services/userquery'
+import { useQuery } from 'react-query'
 
 const AdminDashboard = () => {
+    const { data, isLoading, isSuccess, error} = useQuery('adminquery', getUserquery)
+    console.log(data)
     const handleChange = () => {}
     const handleClick = () => {}
 
@@ -25,7 +29,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Transactions</span>
-                            <span>50</span>
+                            <span>{data?.result?.t_trans}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -34,7 +38,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Amount</span>
-                            <span>5000</span>
+                            <span>{data?.result?.t_amount}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -43,7 +47,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Coins</span>
-                            <span>12</span>
+                            <span>{data?.result?.t_coin}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -52,7 +56,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Session</span>
-                            <span>7</span>
+                            <span>{data?.result?.t_session}</span>
                         </div>
                     </div>
                 </section>
@@ -78,7 +82,7 @@ const AdminDashboard = () => {
                     </form>
                 </section>
                 <section className='mobile-admin-transactions'>
-                    <Table />
+                    {/* <Table /> */}
                 </section>
             </div>
             <div className="desktop-admin-dashboard">
@@ -93,7 +97,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Transactions</span>
-                            <span>50</span>
+                            <span>{data?.result?.t_trans}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -102,7 +106,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Amount</span>
-                            <span>5000</span>
+                            <span>{data?.result?.t_amount}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -111,7 +115,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Coins</span>
-                            <span>12</span>
+                            <span>{data?.result?.t_coin}</span>
                         </div>
                     </div>
                     <div className='overview-card'>
@@ -120,7 +124,7 @@ const AdminDashboard = () => {
                         </>
                         <div>
                             <span>Total Session</span>
-                            <span>7</span>
+                            <span>{data?.result?.t_session}</span>
                         </div>
                     </div>
                 </section>

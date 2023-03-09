@@ -95,6 +95,10 @@ const AdminLogin = () => {
         event.preventDefault()
         // setIsModalOpen(!isModalOpen)
         mutate(data)
+        setData({
+            email: '',
+            password: '',
+        })
     }
 
     if(isModalOpen) {

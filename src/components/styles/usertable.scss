@@ -1,16 +1,10 @@
-.all-users {
-    min-height: 100vh;
+.user-table {
+    // height: 100vh;
     width: 100%;
-    background: var(--dashboard-background);
 }
-.mobile-all-users {
+.mobile-user-table {
     width: 100%;
     padding: 20px;
-    header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
     main::-webkit-scrollbar {
         display: none;
     }
@@ -26,30 +20,44 @@
             border: none;
             border-radius: 10px;
             background-color: var(--white-text);
-            width: 100%;
             thead {
-                font-weight: 500;
+                font-weight: 400;
                 font-size: 12px;
                 line-height: 18px;
                 color: #878787;
                 text-transform: uppercase;
             }
             tbody {
-                font-weight: 400;
-                font-size: 12px;
-                line-height: 18px;
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 21px;
                 color: #414141;
             }
             tfoot > tr > td {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                > div {
-                    display: flex;
-                    flex-direction: row;
-                    > span {
-                        display: inline-block;
+                border-right: 0;
+                border-bottom: 0;
+                button {
+                    border: none;
+                    outline: none;
+                    background: none;
+                    img {
+                        width: 34px;
+                        height: 34px;
+                        margin: 0 0.5rem;
+                        vertical-align: middle;
                     }
+                }
+                span {
+                    display: inline-flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background: #DECC32;
+                    border-radius: 5px;
+                    color: var(--white-text);
+                    width: 35px;
+                    height: 35px;
+                    text-align: justify;
                 }
             }
             // tr:last-child > td {
@@ -60,7 +68,7 @@
                 margin: 0;
                 padding: 0.5rem;
                 border-bottom: 1px solid #D2D2D2;
-                padding: 20px;
+                // padding: 20px;
                 text-align: left;
                 // border-right: 1px solid black;
             }
@@ -69,45 +77,32 @@
                 border-right: 0;
             }
         }
-    }
+    }     
 }
-.desktop-all-users {
+
+.desktop-user-table {
     display: none;
 }
 
 @media (min-width: 768px) {
-    .mobile-all-users {
+    .mobile-user-table {
         display: none;
     }
-    .desktop-all-users {
+    .desktop-user-table {
         display: block;
         width: 100%;
-        margin: auto;
-        padding: 40px 60px 40px 23rem;
-        header {
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            align-items: center;
-            vertical-align: middle;
-            margin-bottom: 50px;
-            p {
-                font-weight: 500;
-                font-size: 20px;
-                line-height: 30px;
-                color: var(--black-color);
-            }
-        }
+        // overflow: hidden;
+        // margin: auto;
         main {
             display: flex;
+            flex-wrap: wrap;
             margin: 3rem 0;
+            flex-direction: column;
             table {
                 border-spacing: 0;
                 border: none;
                 border-radius: 10px;
                 background-color: var(--white-text);
-                width: 100%;
                 thead {
                     font-weight: 400;
                     font-size: 12px;
@@ -117,20 +112,35 @@
                 }
                 tbody {
                     font-weight: 500;
-                    font-size: 14px;
+                    font-size: 13px;
                     line-height: 21px;
                     color: #414141;
                 }
                 tfoot > tr > td {
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: space-between;
-                    > div {
-                        display: flex;
-                        flex-direction: row;
-                        > span {
-                            display: inline-block;
+                    border-right: 0;
+                    border-bottom: 0;
+                    button {
+                        border: none;
+                        outline: none;
+                        background: none;
+                        img {
+                            width: 34px;
+                            height: 34px;
+                            margin: 0 0.5rem;
+                            vertical-align: middle;
                         }
+                    }
+                    span {
+                        display: inline-flex;
+                        flex-direction: row;
+                        justify-content: center;
+                        align-items: center;
+                        background: #DECC32;
+                        border-radius: 5px;
+                        color: var(--white-text);
+                        width: 35px;
+                        height: 35px;
+                        text-align: justify;
                     }
                 }
                 // tr:last-child > td {
@@ -141,7 +151,7 @@
                     margin: 0;
                     padding: 0.5rem;
                     border-bottom: 1px solid #D2D2D2;
-                    padding: 20px;
+                    // padding: 20px;
                     text-align: left;
                     // border-right: 1px solid black;
                 }
@@ -150,6 +160,6 @@
                     border-right: 0;
                 }
             }
-        }
+        }     
     }
 }

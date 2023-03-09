@@ -93,6 +93,10 @@ const UserLogin = () => {
         // setIsModalOpen(!isModalOpen)
         event.preventDefault()
         mutate(data)
+        setData({
+            email: '',
+            password: '',
+        })
     }
 
     if(isModalOpen) {
