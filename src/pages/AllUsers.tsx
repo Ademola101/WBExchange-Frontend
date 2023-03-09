@@ -1,22 +1,42 @@
 import './styles/allusers.scss'
 import Input from "../components/Input"
-import { getUserData } from '../services/userdata'
+import { getAllUsers } from '../services/listusers'
 import { useUser } from '../hooks/user'
+import Spinner from '../components/Spinner'
 
 import { useQuery } from 'react-query'
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { createBrowserHistory } from "history";
+
+const browserHistory = createBrowserHistory()
+const MySwal = withReactContent(Swal)
 
 const AllUsers = () => {
     const { name, email } = useUser()
-    const { data, isLoading, error, isSuccess } = useQuery('userdata', getUserData, {
-        keepPreviousData: true,
-        staleTime: Infinity,
-    })
+    const { data, isLoading, error, isSuccess } = useQuery('allusers', getAllUsers)
+    console.log(data)
 
     if (isLoading) {
-        console.log('loading')
+        return <Spinner />
     }
     if (error) {
-        return <div>error</div>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+          
+        Toast.fire({
+            icon: 'error',
+            title: 'An error occured'
+        })
     }
     if (isSuccess && data) {
         const mapdata = Object.values(data.result)?.map((results: any, index: number) => (
@@ -51,8 +71,8 @@ const AllUsers = () => {
                             <tbody>
                                 <tr>
                                     <td>{index + 1}</td>
-                                    <td>{name}</td>
-                                    <td>{email}</td>
+                                    <td>{results.name}</td>
+                                    <td>{results.email}</td>
                                     <td>
                                         <p>Total Transactions: {results.t_trans}</p>
                                         <p>Total Amount: {results.t_amount}</p>
@@ -71,6 +91,7 @@ const AllUsers = () => {
                                                 border: 'none',
                                                 outline: 'none',
                                                 margin: '10px',
+                                                cursor: 'pointer,'
                                             }}
                                         >
                                             Delete
@@ -87,6 +108,7 @@ const AllUsers = () => {
                                                 border: 'none',
                                                 outline: 'none',
                                                 margin: '10px',
+                                                cursor: 'pointer,'
                                             }}
                                         >
                                             Suspend
@@ -125,12 +147,12 @@ const AllUsers = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        {isSuccess ? Object?.keys(data?.result)?.map((results: any, index: number) => (
+                        {isSuccess ? Object?.values(data?.result)?.map((results: any, index: number) => (
                             <tbody>
                                 <tr>
                                     <td>{index + 1}</td>
-                                    <td>{name}</td>
-                                    <td>{email}</td>
+                                    <td>{results?.name}</td>
+                                    <td>{results?.email}</td>
                                     <td>
                                         <p>Total Transactions: {results.t_trans}</p>
                                         <p>Total Amount: {results.t_amount}</p>
@@ -149,6 +171,7 @@ const AllUsers = () => {
                                                 border: 'none',
                                                 outline: 'none',
                                                 margin: '10px',
+                                                cursor: 'pointer,'
                                             }}
                                         >
                                             Delete
@@ -165,6 +188,7 @@ const AllUsers = () => {
                                                 border: 'none',
                                                 outline: 'none',
                                                 margin: '10px',
+                                                cursor: 'pointer,'
                                             }}
                                         >
                                             Suspend

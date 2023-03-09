@@ -8,46 +8,57 @@ import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
 import Spinner from './Spinner'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
 import { useQuery } from 'react-query'
 
 
 const Table = () => {
-    const { data: results, isLoading, error, isSuccess } = useQuery('transactions', getTransactions, {
-        keepPreviousData: true,
-        staleTime: Infinity,
-    })
+    // const [tableData, setTableData] = useState(null)
+    const { data, isLoading, error, isSuccess } = useQuery(['transactions'], getTransactions)
+    // console.log(res)
+    // const newTableData = isSuccess && res?.result
+    // useEffect(() => {
+    //     setTableData(newTableData)
+    // }, [tableData])
+    // const data = useMemo(() => [...tableData], [tableData])
+    // useEffect(() => {
+    //     setTableData(newTableData)
+    // }, [tableData])
     const columns: any = useMemo(() => COLUMNS, [])
-    const data = useMemo(() => [...results.result], [results.result])
+    // const data = res?.result
+    // const data = res?.result
+    // const data = isSuccess && res?.result
+    // console.log(results)
+    // const data = useMemo(() => [...results], [results])
     
 
     // const columns: any = useMemo(() => COLUMNS, [])
     // const [data, setData] = useState(() => mockData(5000))
     // const refreshData = () => setData(() => mockData(5000))
     // console.log(refreshData)
-    // @ts-ignore
-    // const { 
-    //         getTableProps, 
-    //         getTableBodyProps, 
-    //         headerGroups, 
-    //         rows, 
-    //         prepareRow, 
-    //         // @ts-ignore
-    //         setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
-    //         // @ts-ignore
-    //         state: { pageIndex, pageSize, globalFilter } } = useTable({
-    //     columns,
-    //     data,
-    // },
-    // useGlobalFilter,
-    // useSortBy,
-    // usePagination,
-    // )
+    //@ts-ignore
+    const { 
+            getTableProps, 
+            getTableBodyProps, 
+            headerGroups, 
+            rows, 
+            prepareRow, 
+            // @ts-ignore
+            setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
+            // @ts-ignore
+            state: { pageIndex, pageSize, globalFilter } } = useTable<Object[] | any>({
+        columns,
+        data
+    },
+    useGlobalFilter,
+    useSortBy,
+    usePagination,
+    )
 
-    // const handleClick = () => {}
+    const handleClick = () => {}
 
-    // if(isLoading) {
+    // if(isLoading || !tableData) {
     //     return <Spinner />
     // }
     // if (error) {
@@ -57,7 +68,7 @@ const Table = () => {
 
     return (
         <div className='table'>
-            {/* {isSuccess ?
+            {isSuccess ?
                 <>
                                 <div className='mobile-table'>
                 <header>
@@ -188,7 +199,7 @@ const Table = () => {
                 </main>
             </div>
                 </>
-             : null} */}
+             : null}
         </div>
     )
 }
