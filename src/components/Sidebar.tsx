@@ -1,5 +1,4 @@
 import './styles/sidebar.scss'
-import { NavLink } from "react-router-dom"
 import logo from '../assets/icons/logo.svg'
 import dashboard from '../assets/icons/dashboard.svg'
 import cards from '../assets/icons/cards.svg'
@@ -8,18 +7,22 @@ import logout from '../assets/icons/logout.svg'
 import hamburger from '../assets/icons/hamburger.svg'
 import Button from './Button'
 import { useUser } from '../hooks/user'
+import { useAuth } from '../hooks/auth'
 
 import { useEffect, useState } from 'react'
+import { NavLink, useNavigate } from "react-router-dom"
 
 interface ISidebarProps {
     isActive: boolean
 }
 
 const Sidebar = ({ isActive }: ISidebarProps) => {
+    const navigate = useNavigate()
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState<any | null>(null);
     const [openMenu, setOpenMenu] = useState(false);
-    // const { name }
+    // const { name } = useUser()
+    const { setIsLoggedIn } = useAuth()
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
@@ -38,7 +41,13 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
         }, [screenSize]),
     ]);
 
-    const handleClick = () => {}
+    const handleClick = (event: { preventDefault: () => void }) => {
+        event.preventDefault()
+        localStorage.removeItem('wb-user-token')
+        localStorage.removeItem('wb-staff-user')
+        setIsLoggedIn(false)
+        navigate('/')
+    }
 
     return (
         <div className={isActive ? 'sidebar__container--active' : 'sidebar__container'}>

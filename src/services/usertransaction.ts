@@ -14,7 +14,7 @@ export const getUserTransactions = async() => {
                 "Authorization": `Bearer ${token}`
             }
         })
-        return response.data
+        return response.data.result
     }
     catch (err) {
         //@ts-expect-error

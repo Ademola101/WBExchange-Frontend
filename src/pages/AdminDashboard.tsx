@@ -6,13 +6,21 @@ import amount from '../assets/icons/amount.svg'
 import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
+
 import { getUserquery } from '../services/userquery'
 import { useQuery } from 'react-query'
+import { useState } from 'react'
+import { useAsyncDebounce } from 'react-table'
+import AdminFormTable from '../components/AdminFormTable'
 
 const AdminDashboard = () => {
+    const [adminGlobalFilter, setAdminGlobalFilter] = useState<any>('')
+    const [value, setValue] = useState(adminGlobalFilter)
     const { data, isLoading, isSuccess, error} = useQuery('adminquery', getUserquery)
     console.log(data)
-    const handleChange = () => {}
+    const handleChange = useAsyncDebounce((value) => {
+        setAdminGlobalFilter(value || undefined)
+    }, 200)
     const handleClick = () => {}
 
     return (
@@ -60,15 +68,15 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                 </section>
-                <section className='mobile-amount-section'>
-                    <form>
+                <section>
+                    {/* <form>
                         <Input 
                             type='number'
                             placeholder='USD'
                             id='USD-Amount'
                             label='Enter Amount in USD'
                             name='USD-Amount'
-                            onChange={handleChange}
+                            onChange={() => {}}
                         />
                         <Input 
                             type='number'
@@ -76,13 +84,14 @@ const AdminDashboard = () => {
                             id='Coin-Amount'
                             label='Enter Amount in Coin'
                             name='Coin-Amount'
-                            onChange={handleChange}
+                            onChange={() => {}}
                         />
                         <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
                     </form>
                 </section>
                 <section className='mobile-admin-transactions'>
-                    {/* <Table /> */}
+                    <Table /> */}
+                    <AdminFormTable />
                 </section>
             </div>
             <div className="desktop-admin-dashboard">
@@ -128,15 +137,19 @@ const AdminDashboard = () => {
                         </div>
                     </div>
                 </section>
-                <section className='desktop-amount-section'>
-                    <form>
+                <section>
+                    {/* <form>
                         <Input 
                             type='number'
                             placeholder='USD'
                             id='USD-Amount'
                             label='Enter Amount in USD'
                             name='USD-Amount'
-                            onChange={handleChange}
+                            value={value || ""}
+                            onChange={(event: any) => {
+                                setValue(event?.target?.value)
+                                handleChange(event?.target?.value)
+                            }}
                         />
                         <Input 
                             type='number'
@@ -144,13 +157,15 @@ const AdminDashboard = () => {
                             id='Coin-Amount'
                             label='Enter Amount in Coin'
                             name='Coin-Amount'
-                            onChange={handleChange}
+                            // value={value || ""}
+                            onChange={() => {}}
                         />
                         <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
                     </form>
                 </section>
                 <section className='desktop-admin-transactions'>
-                    <Table />
+                    <Table /> */}
+                    <AdminFormTable />
                 </section>
             </div>
         </div>
