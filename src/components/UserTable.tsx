@@ -7,8 +7,6 @@ import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
 import Spinner from './Spinner'
 import { getUserTransactions } from '../services/usertransaction'
-import axios from 'axios'
-import { BASE_URL } from '../constant'
 
 import { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
@@ -21,12 +19,10 @@ interface IToken {
 const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
 
 const UserTable = () => {
-    const { data: results, isLoading, error, isSuccess } = useQuery('usertransactions', () => getUserTransactions())
-    console.log(results)
+    const { data: result, isLoading, error, isSuccess } = useQuery('usertransactions', () => getUserTransactions(), {initialData: []})
+    console.log(result)
   
-    // console.log(results)
     const columns: any = useMemo(() => USERCOLUMNS, [])
-    const result = results?.result
     const data = useMemo(() => [...result], [result])
     //@ts-ignore
     const { 

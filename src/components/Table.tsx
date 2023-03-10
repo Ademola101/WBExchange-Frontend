@@ -14,23 +14,11 @@ import { useQuery } from 'react-query'
 
 
 const Table = () => {
-    // const [tableData, setTableData] = useState(null)
-    const { data, isLoading, error, isSuccess } = useQuery(['transactions'], getTransactions)
-    // console.log(res)
-    // const newTableData = isSuccess && res?.result
-    // useEffect(() => {
-    //     setTableData(newTableData)
-    // }, [tableData])
-    // const data = useMemo(() => [...tableData], [tableData])
-    // useEffect(() => {
-    //     setTableData(newTableData)
-    // }, [tableData])
+    const { data: result, isLoading, error, isSuccess } = useQuery(['transactions'], getTransactions, {initialData: []})
+    // const data = [] ?? res
+    console.log(result)
     const columns: any = useMemo(() => COLUMNS, [])
-    // const data = res?.result
-    // const data = res?.result
-    // const data = isSuccess && res?.result
-    // console.log(results)
-    // const data = useMemo(() => [...results], [results])
+    const data = useMemo(() => [...result], [result])
     
 
     // const columns: any = useMemo(() => COLUMNS, [])
@@ -45,9 +33,9 @@ const Table = () => {
             rows, 
             prepareRow, 
             // @ts-ignore
-            setGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
+            setGlobalFilter, setAdminGlobalFilter, page, canPreviousPage, canNextPage, pageOptions, pageCount, gotoPage, nextPage, previousPage, setPageSize,
             // @ts-ignore
-            state: { pageIndex, pageSize, globalFilter } } = useTable<Object[] | any>({
+            state: { pageIndex, pageSize, globalFilter, adminGlobalFilter } } = useTable<Object[] | any>({
         columns,
         data
     },
@@ -58,19 +46,13 @@ const Table = () => {
 
     const handleClick = () => {}
 
-    // if(isLoading || !tableData) {
-    //     return <Spinner />
-    // }
-    // if (error) {
-    //     return <div>error</div>
-    // }
 
 
     return (
         <div className='table'>
             {isSuccess ?
                 <>
-                                <div className='mobile-table'>
+                <div className='mobile-table'>
                 <header>
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
