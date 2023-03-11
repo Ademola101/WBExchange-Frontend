@@ -7,7 +7,7 @@ import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
 
-import { getUserquery } from '../services/userquery'
+import { getQuery } from '../services/adminquery'
 import { useQuery } from 'react-query'
 import { useState } from 'react'
 import { useAsyncDebounce } from 'react-table'
@@ -16,7 +16,7 @@ import AdminFormTable from '../components/AdminFormTable'
 const AdminDashboard = () => {
     const [adminGlobalFilter, setAdminGlobalFilter] = useState<any>('')
     const [value, setValue] = useState(adminGlobalFilter)
-    const { data, isLoading, isSuccess, error} = useQuery('adminquery', getUserquery)
+    const { data, isLoading, isSuccess, error} = useQuery('adminquery', getQuery)
     console.log(data)
     const handleChange = useAsyncDebounce((value) => {
         setAdminGlobalFilter(value || undefined)

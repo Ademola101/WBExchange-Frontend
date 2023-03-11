@@ -6,7 +6,7 @@ import amount from '../assets/icons/amount.svg'
 import coins from '../assets/icons/coins.svg'
 import session from '../assets/icons/session.svg'
 import Table from '../components/Table'
-import { getUserquery } from '../services/userquery'
+import { getUserData } from '../services/userdata'
 import UserTable from '../components/UserTable'
 import { addNewTransactions } from '../services/addtransactions'
 
@@ -16,6 +16,7 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
 import { useState } from 'react'
+import UserFormTable from '../components/UserFormTable'
 
 const browserHistory = createBrowserHistory()
 const MySwal = withReactContent(Swal)
@@ -26,7 +27,7 @@ const UserDashboard = () => {
         amount: '',
         amountCoin: '',
     })
-    const { data, isSuccess } = useQuery('userquery', getUserquery)
+    const { data, isSuccess } = useQuery('userquery', getUserData)
     console.log(data)
     const { mutate, isLoading, error } = useMutation(addNewTransactions, {
         onSuccess: (res) => {
@@ -138,31 +139,8 @@ const UserDashboard = () => {
                         </div>
                     </div>
                 </section>
-                <section className='mobile-amount-section'>
-                    <form>
-                        <Input 
-                            type='number'
-                            placeholder='USD'
-                            id='USD-Amount'
-                            label='Enter Amount in USD'
-                            name='amount'
-                            value={transactionData.amount}
-                            onChange={handleChange}
-                        />
-                        <Input 
-                            type='number'
-                            placeholder='Coin'
-                            id='Coin-Amount'
-                            label='Enter Amount in Coin'
-                            name='amountCoin'
-                            value={transactionData.amountCoin}
-                            onChange={handleChange}
-                        />
-                        <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
-                    </form>
-                </section>
-                <section className='mobile-user-transactions'>
-                    <UserTable />
+                <section>
+                    <UserFormTable />
                 </section>
             </div>
             <div className="desktop-user-dashboard">
@@ -208,39 +186,8 @@ const UserDashboard = () => {
                         </div>
                     </div>
                 </section>
-                <section className='desktop-amount-section'>
-                    <form>
-                        <Input 
-                            type='number'
-                            placeholder='USD'
-                            id='USD-Amount'
-                            label='Enter Amount in USD'
-                            name='amount'
-                            value={transactionData.amount}
-                            onChange={handleChange}
-                        />
-                        <Input 
-                            type='number'
-                            placeholder='Coin'
-                            id='Coin-Amount'
-                            label='Enter Amount in Coin'
-                            name='amountCoin'
-                            value={transactionData.amountCoin}
-                            onChange={handleChange}
-                        />
-                        <Button 
-                            type='submit' 
-                            onClick={handleClick} 
-                            isLoading={isLoading}
-                            disabled={disabled}
-                            variant='gold'
-                        >
-                            Submit
-                        </Button>
-                    </form>
-                </section>
-                <section className='desktop-user-transactions'>
-                    <UserTable />
+                <section>
+                    <UserFormTable />
                 </section>
             </div>
         </div>

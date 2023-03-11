@@ -17,12 +17,12 @@ export const useAuth = () => {
             setIsLoggedIn(false)
             return navigate('/')
         }
-        if(!userToken || userToken === undefined) {
+        else if(!userToken || userToken === undefined) {
             setIsLoggedIn(false)
             return navigate('/')
         }
         setIsLoggedIn(true)
-    })
+    }, [isLoggedIn])
 
     return {
         isLoggedIn,
