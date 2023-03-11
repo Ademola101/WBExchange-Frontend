@@ -21,7 +21,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
     const [activeMenu, setActiveMenu] = useState(true);
     const [screenSize, setScreenSize] = useState<any | null>(null);
     const [openMenu, setOpenMenu] = useState(false);
-    // const { name } = useUser()
+    const { name } = useUser()
     const { setIsLoggedIn } = useAuth()
 
     useEffect(() => {
@@ -123,7 +123,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
             <footer className="desktop-sidebar-logout">
                 <div className="desktop-user-profile">
                     <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
-                    <span>Emmanuel</span>
+                    <span>{name}</span>
                 </div>
                 <div className="desktop-logout-button">
                     <Button 

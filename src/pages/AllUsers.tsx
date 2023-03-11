@@ -67,7 +67,7 @@ const AllUsers = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        {isSuccess ? Object?.keys(data?.result)?.map((results: any, index: number) => (
+                        {isSuccess ? Object?.values(data?.result)?.map((results: any, index: number) => (
                             <tbody>
                                 <tr>
                                     <td>{index + 1}</td>

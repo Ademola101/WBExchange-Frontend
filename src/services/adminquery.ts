@@ -5,12 +5,12 @@ interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
+const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
 
 
-export const getUserquery = async() => {
+export const getQuery = async() => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/getuserQuery`, {
+        const response = await axios.get(`${BASE_URL}/api/getQuery`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

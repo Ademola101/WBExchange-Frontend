@@ -5,7 +5,7 @@ interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
 
 export const getUserData = async () => {
     try {
