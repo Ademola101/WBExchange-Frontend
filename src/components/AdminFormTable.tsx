@@ -183,7 +183,7 @@ const AdminFormTable = () => {
                             </main>
                         </> 
                     : null
-                    }
+                }
                 </section>
             </div>
         </div>

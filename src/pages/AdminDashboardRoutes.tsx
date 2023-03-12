@@ -6,6 +6,7 @@ import AllUsers from "./AllUsers"
 import ChangePassword from "./ChangePassword"
 import CreateUser from "./CreateUser"
 import Report from "./Report"
+import Reports from "./Reports"
 import TransactionHistory from "./TransactionHistory"
 
 const AdminDashboardRoutes = () => {
@@ -20,7 +21,8 @@ const AdminDashboardRoutes = () => {
                 <Route path="create-user" element={<CreateUser />} />
                 <Route path="all-users" element={<AllUsers />} />
                 <Route path="change-password" element={<ChangePassword />} />
-                <Route path="report" element={<Report />} />
+                {/* <Route path="report" element={<Report />} /> */}
+                <Route path="reports" element={<Reports /> } />
             </Routes>
         </div>
     )
