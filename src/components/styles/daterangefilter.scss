@@ -1,0 +1,19 @@
+.daterange-filter {
+    width: 100%;
+}
+
+.mobile-daterange-filter {
+    width: 100%;
+}
+.desktop-daterange-filter {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-daterange-filter {
+        display: none;
+    }
+    .desktop-daterange-filter {
+        display: block;
+    }
+}

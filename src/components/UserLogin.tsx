@@ -23,7 +23,7 @@ const UserLogin = () => {
         email: '',
         password: '',
     })
-    const { setIsLoggedIn } = useAuth()
+    const { setIsLoggedIn } = useAuth('user')
     const { mutate, isLoading } = useMutation(userlogin, {
         onError: () => {
             const Toast = Swal.mixin({

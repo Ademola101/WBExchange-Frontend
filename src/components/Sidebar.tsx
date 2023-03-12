@@ -22,7 +22,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
     const [screenSize, setScreenSize] = useState<any | null>(null);
     const [openMenu, setOpenMenu] = useState(false);
     const { name } = useUser()
-    const { setIsLoggedIn } = useAuth()
+    const { setIsLoggedIn } = useAuth('user')
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);

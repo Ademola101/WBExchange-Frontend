@@ -33,7 +33,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
     const [screenSize, setScreenSize] = useState<any | null>(null)
     const [openMenu, setOpenMenu] = useState(false)
     const { name } = useUser()
-    const { setIsLoggedIn } = useAuth()
+    const { setIsLoggedIn } = useAuth('admin')
 
     const handleClick = (event: { preventDefault: () => void }) => {
         event.preventDefault()
@@ -104,7 +104,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         </div>
                         <span>Change Password</span>
                     </NavLink>
-                    <NavLink to="report" className="nav-links">
+                    <NavLink to="reports" className="nav-links">
                         <div className="icon-container">
                             <img src={report} alt='key icon'/>
                         </div>
@@ -163,7 +163,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                 </div>
                 <span>Change Password</span>
             </NavLink>
-            <NavLink to="report" className="nav-links">
+            <NavLink to="reports" className="nav-links">
                 <div className="icon-container">
                     <img src={report} alt='key icon'/>
                 </div>

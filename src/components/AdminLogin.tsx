@@ -24,7 +24,7 @@ const AdminLogin = () => {
         email: '',
         password: '',
     })
-    const { setIsLoggedIn } = useAuth()
+    const { setIsLoggedIn } = useAuth('admin')
     const { mutate, isLoading } = useMutation(adminlogin, {
         onError: () => {
             const Toast = Swal.mixin({
