@@ -22,7 +22,7 @@ const AdminDashboardRoutes = () => {
                 <Route path="all-users" element={<AllUsers />} />
                 <Route path="change-password" element={<ChangePassword />} />
                 {/* <Route path="report" element={<Report />} /> */}
-                <Route path="reports" element={<Reports /> } />
+                <Route path="report" element={<Reports /> } />
             </Routes>
         </div>
     )

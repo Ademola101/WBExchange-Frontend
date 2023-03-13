@@ -1,15 +1,15 @@
+import './styles/reports.scss'
+import { getTransactions } from '../services/transactions'
+import { BASE_URL } from '../constant'
+
+
 import { format, parseISO } from 'date-fns'
 import moment from 'moment'
-import { ReactElement, JSXElementConstructor, ReactFragment, ReactPortal, useState, SetStateAction, useEffect } from 'react'
-import { useQuery } from 'react-query'
-import { getTransactions } from '../services/transactions'
-import './styles/reports.scss'
-
-import { DateRangePicker } from 'react-date-range'
+import { useState, useEffect } from 'react'
+import { DateRangePicker, DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css' // main style file
 import 'react-date-range/dist/theme/default.css'
 import axios from 'axios'
-import { BASE_URL } from '../constant'
 
 interface IToken {
     token: string | null
@@ -21,9 +21,6 @@ const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as strin
 const Reports = () => {
     const [startDate,setStartDate]= useState(new Date())
     const [endDate,setEndDate]= useState(new Date())
-    // const { data, isLoading, error, isSuccess } = useQuery(['transactionsreports'], getTransactions, {initialData: []})
-    // // const data = [] ?? res
-    // console.log(data)
     const [transactions, setTransactions] = useState([])
     const [allTransactions, setAllTransactions] = useState([])
     useEffect(() => {
@@ -56,24 +53,69 @@ const Reports = () => {
     
     return (
         <div className="reports">
-            <div className="mobile-reports"></div>
-            <div className="desktop-reports">
+            <div className="mobile-reports">
                 {/* <header>
                     <h3>Report</h3>
                 </header> */}
-                <DateRangePicker 
-                    ranges={[selectionRange]}
-                    onChange={handleSelect}
-                />
+                <section>
+                    <DateRangePicker 
+                        ranges={[selectionRange]}
+                        onChange={handleSelect}
+                    />
+                </section>
                 <main>
                     <table>
                         <thead>
-                            <tr>Transaction ID</tr>
-                            <tr>Amount</tr>
-                            <tr>Coin Amount</tr>
-                            <tr>User</tr>
-                            <tr>Date</tr>
-                            <tr>Time</tr>
+                            <tr>
+                                <td>Transaction ID</td>
+                                <td>Amount</td>
+                                <td>Coin Amount</td>
+                                <td>User</td>
+                                <td>Date</td>
+                                <td>Time</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {transactions.map((result: any) => {
+                                // let date = format(parseISO(result?.created_at), "dd/MM/yyyy HH:mm:ss")
+                                let date = new Date(result["created_at"])
+                                let time = moment(result?.created_at).fromNow()
+                                return (
+                                    <tr>
+                                        <td>{result?.transId}</td>
+                                        <td>{result?.amount}</td>
+                                        <td>{result?.amountCoin}</td>
+                                        <td>{result?.user}</td>
+                                        <td>{date.toLocaleDateString()}</td>
+                                        <td>{time}</td>
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </main>
+            </div>
+            <div className="desktop-reports">
+                <header>
+                    <h3>Report</h3>
+                </header>
+                <section>
+                    <DateRangePicker 
+                        ranges={[selectionRange]}
+                        onChange={handleSelect}
+                    />
+                </section>
+                <main>
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Transaction ID</td>
+                                <td>Amount</td>
+                                <td>Coin Amount</td>
+                                <td>User</td>
+                                <td>Date</td>
+                                <td>Time</td>
+                            </tr>
                         </thead>
                         <tbody>
                             {transactions.map((result: any) => {

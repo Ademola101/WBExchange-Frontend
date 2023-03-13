@@ -5,6 +5,95 @@
 }
 .mobile-reports {
     width: 100%;
+    padding: 100px 20px;
+    header {
+        display: flex;
+    }
+    section::-webkit-scrollbar {
+        display: none;
+    }
+    section {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 10px;
+        overflow-x: auto;
+        // margin: 5rem 0;
+    }
+    main::-webkit-scrollbar {
+        display: none;
+    }
+    main {
+        display: flex;
+        margin: 3rem 0;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        overflow-x: auto;
+        table {
+            border-spacing: 0;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--white-text);
+            thead {
+                font-weight: 400;
+                font-size: 12px;
+                line-height: 18px;
+                color: #878787;
+                text-transform: uppercase;
+            }
+            tbody {
+                font-weight: 500;
+                font-size: 13px;
+                line-height: 21px;
+                color: #414141;
+            }
+            tfoot > tr > td {
+                border-right: 0;
+                border-bottom: 0;
+                button {
+                    border: none;
+                    outline: none;
+                    background: none;
+                    img {
+                        width: 34px;
+                        height: 34px;
+                        margin: 0 0.5rem;
+                        vertical-align: middle;
+                    }
+                }
+                span {
+                    display: inline-flex;
+                    flex-direction: row;
+                    justify-content: center;
+                    align-items: center;
+                    background: #DECC32;
+                    border-radius: 5px;
+                    color: var(--white-text);
+                    width: 35px;
+                    height: 35px;
+                    text-align: justify;
+                }
+            }
+            // tr:last-child > td {
+            //     border-bottom: 0;
+            // }
+            th,
+            td {
+                margin: 0;
+                padding: 0.5rem;
+                border-bottom: 1px solid #D2D2D2;
+                // padding: 20px;
+                text-align: left;
+                // border-right: 1px solid black;
+            }
+            th:last-child ,
+            td:last-child {
+                border-right: 0;
+            }
+        }
+    }  
 }
 .desktop-reports {
     display: none;
@@ -17,14 +106,19 @@
     .desktop-reports {
         display: block;
         padding: 40px 60px 40px 23rem;
-        // header {
-        //     h3 {
-        //         font-weight: 500;
-        //         font-size: 20px;
-        //         line-height: 30px;
-        //         color: var(--black-color);
-        //     }
-        // }
+        header {
+            h3 {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 30px;
+                color: var(--black-color);
+            }
+        }
+        section {
+            display: flex;
+            justify-content: center;
+            margin-top: 50px;
+        }
         main {
             display: flex;
             flex-wrap: wrap;

@@ -23,6 +23,9 @@
             color: var(--white-text);
         }
     }
+    section .active {
+        color: #fff;
+    }
     section {
         display: block;
         position: fixed;
