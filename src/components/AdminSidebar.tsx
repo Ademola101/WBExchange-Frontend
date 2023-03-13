@@ -104,7 +104,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         </div>
                         <span>Change Password</span>
                     </NavLink>
-                    <NavLink to="reports" className="nav-links">
+                    <NavLink to="report" className="nav-links">
                         <div className="icon-container">
                             <img src={report} alt='key icon'/>
                         </div>
@@ -133,19 +133,19 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                 <img src={logo} alt="logo" className="eform-logo"/>
                 <hr />
             </header>
-            <NavLink to="/admin" className="nav-links">
+            <NavLink to="/admin" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
                 <div className="icon-container">
                     <img src={dashboard} alt='dashboard icon'/>
                 </div>
                 <span>Dashboard</span>
             </NavLink>
-            <NavLink to="transaction-history" className="nav-links">
+            <NavLink to="transaction-history" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
                 <div className="icon-container">
                     <img src={cards} alt='payment icon'/>
                 </div>
                 <span>Transaction History</span>
             </NavLink>
-            <NavLink to="create-user" className="nav-links">
+            <NavLink to="create-user" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
                 <div className="icon-container">
                     <img src={createUser} alt='payment icon'/>
                 </div>
@@ -163,7 +163,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                 </div>
                 <span>Change Password</span>
             </NavLink>
-            <NavLink to="reports" className="nav-links">
+            <NavLink to="report" className="nav-links">
                 <div className="icon-container">
                     <img src={report} alt='key icon'/>
                 </div>
