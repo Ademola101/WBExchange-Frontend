@@ -15,6 +15,7 @@ const MySwal = withReactContent(Swal)
 
 const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
     const [value, setValue] = useState(globalFilter)
+    const [coinValue, setCoinValue] = useState(globalFilter)
     const [transactionData, setTransactionData] = useState({
         amount: '',
         amountCoin: '',
@@ -102,11 +103,13 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                     />
                     <Input 
                         type='number'
+                        step="0.0001"
                         placeholder='Coin'
                         id='Coin-Amount'
                         label='Enter Amount in Coin'
                         name='amountCoin'
                         onChange={(event: any) => {
+                            setCoinValue(event?.target?.value)
                             setTransactionData({ ...transactionData, amountCoin: event.target.value})
                         }}
                     />
@@ -138,12 +141,14 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                     />
                     <Input 
                         type='number'
+                        step="0.0001"
                         placeholder='Coin'
                         id='Coin-Amount'
                         label='Enter Amount in Coin'
                         name='amountCoin'
                         // value={value || ""}
                         onChange={(event: any) => {
+                            setCoinValue(event?.target?.value)
                             setTransactionData({ ...transactionData, amountCoin: event.target.value})
                         }}
                     />

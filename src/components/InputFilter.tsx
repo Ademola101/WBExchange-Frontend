@@ -7,12 +7,17 @@ import { useAsyncDebounce } from "react-table"
 
 const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
     const [value, setValue] = useState(globalFilter)
+    const [coinValue, setCoinValue] = useState(globalFilter)
 
 
     const handleChange = useAsyncDebounce((value) => {
         setGlobalFilter(value || undefined)
     }, 200)
+
+
     const handleClick = () => {}
+
+    const disabled = !value || !coinValue
     return (
         <div className="input-filter">
             <section className="mobile-input-filter">
@@ -23,17 +28,26 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                         id='USD-Amount'
                         label='Enter Amount in USD'
                         name='USD-Amount'
-                        onChange={() => {}}
+                        value={value || ""}
+                        onChange={(event: any) => {
+                            setValue(event?.target?.value)
+                            handleChange(event?.target?.value)
+                        }}
                     />
                     <Input 
                         type='number'
+                        step="0.0001"
                         placeholder='Coin'
                         id='Coin-Amount'
                         label='Enter Amount in Coin'
                         name='Coin-Amount'
-                        onChange={() => {}}
+                        value={coinValue || ""}
+                        onChange={(event: any) => {
+                            setCoinValue(event?.target?.value)
+                            handleChange(event?.target?.value)
+                        }}
                     />
-                    <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
+                    <Button type='submit' onClick={handleClick} variant='gold' disabled={disabled}>Submit</Button>
                 </form>
             </section>
             <section className="desktop-input-filter">
@@ -52,14 +66,18 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                     />
                     <Input 
                         type='number'
+                        step="0.0001"
                         placeholder='Coin'
                         id='Coin-Amount'
                         label='Enter Amount in Coin'
                         name='Coin-Amount'
-                        // value={value || ""}
-                        onChange={() => {}}
+                        value={coinValue || ""}
+                        onChange={(event: any) => {
+                            setCoinValue(event?.target?.value)
+                            handleChange(event?.target?.value)
+                        }}
                     />
-                    <Button type='submit' onClick={handleClick} variant='gold'>Submit</Button>
+                    <Button type='submit' onClick={handleClick} variant='gold' disabled={disabled}>Submit</Button>
                 </form>
             </section>
         </div>

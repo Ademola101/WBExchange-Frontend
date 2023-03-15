@@ -6,4 +6,5 @@
   --button-filter: drop-shadow(1px 1px 4px rgba(0, 0, 0, 0.25)); 
   --button-background: linear-gradient(286.47deg, #712999 80.38%, rgba(113, 41, 153, 0) 109.18%);
   --dashboard-background: #EAEAEA;
+  /* --dashboard-background: #C8A2C8; */
 }

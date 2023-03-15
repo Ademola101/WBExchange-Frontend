@@ -27,6 +27,7 @@ const AdminDashboard = () => {
     const { data, isLoading, isSuccess, error} = useQuery(['adminquery', token], getQuery, {
         initialData: {},
         enabled: !!token,
+        staleTime: 0,
         // staleTime: 86400000,
     })
     console.log(data)

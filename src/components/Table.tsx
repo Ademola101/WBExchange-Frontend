@@ -19,6 +19,7 @@ const Table = () => {
     const { data: result, isLoading, error, isSuccess } = useQuery(['transactions', token], getTransactions, {
         initialData: [],
         enabled: !!token,
+        staleTime: 0,
     })
     // const data = [] ?? res
     console.log(result)
@@ -95,7 +96,7 @@ const Table = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan={5}>© 2023 N-Tech System</td>
+                                <td colSpan={5}>© 2023 N-TECH System</td>
                                 <td>
                                     <button  
                                         type='submit' 
@@ -162,7 +163,7 @@ const Table = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan={5}>© 2023 N-Tech System</td>
+                                <td colSpan={5}>© 2023 N-TECH System</td>
                                 <td>
                                     <button  
                                         type='submit' 
