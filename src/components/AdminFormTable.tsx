@@ -4,16 +4,22 @@ import Input from "./Input"
 import { getTransactions } from "../services/transactions"
 import { COLUMNS } from "../data/column"
 import GlobalFilter from "./GlobalFilter"
+import InputFilter from "./InputFilter"
 import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
+import { useAuth } from '../hooks/auth'
 
 import { useQuery } from "react-query"
 import { useMemo } from "react"
 import { Row, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from "react-table"
-import InputFilter from "./InputFilter"
 
 const AdminFormTable = () => {
-    const { data: result, isLoading, error, isSuccess } = useQuery(['admintransactions'], getTransactions, { initialData: []})
+    const token = localStorage.getItem('wb-admin-token')
+    console.log(token)
+    const { data: result, isLoading, error, isSuccess } = useQuery(['admintransactions', token], getTransactions, {
+        initialData: [],
+        enabled: !!token,
+    })
     const columns: any = useMemo(() => COLUMNS, [])
     const data = useMemo(() => [...result], [result])
 

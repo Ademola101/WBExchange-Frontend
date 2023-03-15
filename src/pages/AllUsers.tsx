@@ -1,20 +1,25 @@
 import './styles/allusers.scss'
 import Input from "../components/Input"
 import { getAllUsers } from '../services/listusers'
-import { useUser } from '../hooks/user'
+import { useAdmin } from '../hooks/admin'
 import Spinner from '../components/Spinner'
 
 import { useQuery } from 'react-query'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
+import { useAuth } from '../hooks/auth'
+
 
 const browserHistory = createBrowserHistory()
 const MySwal = withReactContent(Swal)
 
 const AllUsers = () => {
-    const { name, email } = useUser()
-    const { data, isLoading, error, isSuccess } = useQuery('allusers', getAllUsers)
+    // const { name, email } = useAdmin()
+    const { isLoggedIn } = useAuth('admin')
+    const { data, isLoading, error, isSuccess } = useQuery('allusers', getAllUsers, {
+        keepPreviousData: true,
+    })
     console.log(data)
 
     if (isLoading) {

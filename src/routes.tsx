@@ -1,9 +1,12 @@
+import { useState } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AdminDashboardRoutes from './pages/AdminDashboardRoutes'
 import Login from './pages/Login'
 import UserDashboardRoutes from './pages/UserDashboardRoutes'
+import { useAuth } from './hooks/auth'
 
 const AppRoutes = () => {
+    // const [dashboard, setDashboard] = useState<DashboardType>('user')
     return (
         <BrowserRouter>
             <Routes>

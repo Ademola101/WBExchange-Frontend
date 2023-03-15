@@ -4,6 +4,11 @@
 .sidebar__container--active {
     width: 100px;
 }
+.mobile-admin-sidebar .active {
+    color: white;
+    filter: drop-shadow(1px 1px 2px var(--white-text));
+    -webkit-filter:  drop-shadow(1px 1px 2px var(--white-text));
+}
 .mobile-admin-sidebar {
     width: 100%;
     nav {
@@ -118,6 +123,11 @@
 @media (min-width: 768px) {
     .mobile-admin-sidebar {
         display: none;
+    }
+    .desktop-admin-sidebar .active {
+        color: white;
+        filter: drop-shadow(1px 1px 2px var(--white-text));
+        -webkit-filter:  drop-shadow(1px 1px 2px var(--white-text));
     }
     .desktop-admin-sidebar {
         display: block;
