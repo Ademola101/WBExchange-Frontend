@@ -23,7 +23,7 @@ const UserLogin = () => {
         email: '',
         password: '',
     })
-    const { setIsLoggedIn } = useAuth('user')
+    const { isLoggedIn, setIsLoggedIn } = useAuth('user')
     const { mutate, isLoading } = useMutation(userlogin, {
         onError: () => {
             const Toast = Swal.mixin({
@@ -68,7 +68,7 @@ const UserLogin = () => {
                 localStorage.setItem('wb-staff-user', JSON.stringify(user))
                 setIsLoggedIn(true)
                 setTimeout(() => {
-                    navigate('/user')
+                    navigate('/user', {replace: true})
                 }, 4000)
             }
             else {

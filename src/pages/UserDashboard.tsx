@@ -17,17 +17,21 @@ import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
 import { useState } from 'react'
 import UserFormTable from '../components/UserFormTable'
+import { useAuth } from '../hooks/auth'
 
 const browserHistory = createBrowserHistory()
 const MySwal = withReactContent(Swal)
 
 
 const UserDashboard = () => {
+    const { isLoggedIn } = useAuth('user')
     const [transactionData, setTransactionData] = useState({
         amount: '',
         amountCoin: '',
     })
-    const { data, isSuccess } = useQuery('userquery', getUserData)
+    const { data, isSuccess } = useQuery('userquery', getUserData, {
+        initialData: {}
+    })
     console.log(data)
     const { mutate, isLoading, error } = useMutation(addNewTransactions, {
         onSuccess: (res) => {

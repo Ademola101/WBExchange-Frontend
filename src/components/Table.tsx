@@ -7,6 +7,7 @@ import Button from './Button'
 import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
 import Spinner from './Spinner'
+import { useAuth } from '../hooks/auth'
 
 import { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
@@ -14,7 +15,11 @@ import { useQuery } from 'react-query'
 
 
 const Table = () => {
-    const { data: result, isLoading, error, isSuccess } = useQuery(['transactions'], getTransactions, {initialData: []})
+    const token = localStorage.getItem('wb-admin-token')
+    const { data: result, isLoading, error, isSuccess } = useQuery(['transactions', token], getTransactions, {
+        initialData: [],
+        enabled: !!token,
+    })
     // const data = [] ?? res
     console.log(result)
     const columns: any = useMemo(() => COLUMNS, [])

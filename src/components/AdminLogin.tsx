@@ -24,7 +24,7 @@ const AdminLogin = () => {
         email: '',
         password: '',
     })
-    const { setIsLoggedIn } = useAuth('admin')
+    const { isLoggedIn, setIsLoggedIn } = useAuth('admin')
     const { mutate, isLoading } = useMutation(adminlogin, {
         onError: () => {
             const Toast = Swal.mixin({
@@ -70,7 +70,7 @@ const AdminLogin = () => {
                 localStorage.setItem('wb-admin-user', JSON.stringify(user))
                 setIsLoggedIn(true)
                 setTimeout(() => {
-                    navigate('/admin')
+                    navigate('/admin', { replace: true })
                 }, 4000)
             }
             else {

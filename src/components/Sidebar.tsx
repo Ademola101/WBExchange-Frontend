@@ -22,7 +22,16 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
     const [screenSize, setScreenSize] = useState<any | null>(null);
     const [openMenu, setOpenMenu] = useState(false);
     const { name } = useUser()
+    // const { isLoggedIn, setIsLoggedIn, isSignedOut, signOut } = useAuth('user')
     const { setIsLoggedIn } = useAuth('user')
+
+    const handleClick = (event: { preventDefault: () => void }) => {
+        event.preventDefault()
+        localStorage.removeItem('wb-user-token')
+        localStorage.removeItem('wb-staff-user')
+        setIsLoggedIn(false)
+        navigate('/')
+    }
 
     useEffect(() => {
         const handleResize = () => setScreenSize(window.innerWidth);
@@ -41,13 +50,15 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
         }, [screenSize]),
     ]);
 
-    const handleClick = (event: { preventDefault: () => void }) => {
-        event.preventDefault()
-        localStorage.removeItem('wb-user-token')
-        localStorage.removeItem('wb-staff-user')
-        setIsLoggedIn(false)
-        navigate('/')
-    }
+    // if (!isLoggedIn || isSignedOut) {
+    //     navigate('/')
+    //   }
+    // const handleClick = (event: { preventDefault: () => void }) => {
+    //     event.preventDefault()
+    //     if (!isLoggedIn || isSignedOut) {
+    //         navigate('/')
+    //       }
+    // }
 
     return (
         <div className={isActive ? 'sidebar__container--active' : 'sidebar__container'}>
@@ -61,7 +72,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                         <img src={logo} alt="logo" className="eform-logo"/>
                         <hr />
                     </header>
-                    <NavLink to="/user" className="nav-links">
+                    <NavLink to="/user" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'active' : '' }}} end>
                         <div className="icon-container">
                             <img src={dashboard} alt='dashboard icon'/>
                         </div>
@@ -82,12 +93,13 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                     <footer className="user-hamburger-logout">
                         <div className="mobile-user-profile">
                             <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
-                            <span>Emmanuel</span>
+                            <span>{name}</span>
                         </div>
                         <div className="mobile-user-logout-button" style={{width: '200px',}}>
                             <Button 
                                 type='submit' 
-                                onClick={handleClick} 
+                                // onClick={() => signOut()} 
+                                onClick={handleClick}
                                 variant="gold"
                             >
                                 <img src={logout} alt='logout icon' />Logout
@@ -102,7 +114,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 <img src={logo} alt="logo" className="eform-logo"/>
                 <hr />
             </header>
-            <NavLink to="/user" className="nav-links">
+            <NavLink to="/user" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'active' : '' }}} end>
                 <div className="icon-container">
                     <img src={dashboard} alt='dashboard icon'/>
                 </div>
@@ -128,7 +140,8 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 <div className="desktop-logout-button">
                     <Button 
                         type='submit' 
-                        onClick={handleClick} 
+                        // onClick={() => signOut()} 
+                        onClick={handleClick}
                         variant="gold"
                     >
                         <img src={logout} alt='logout icon' />Logout

@@ -19,6 +19,7 @@ import { useMutation } from 'react-query'
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
+import { useAdmin } from '../hooks/admin'
 
 const browserHistory = createBrowserHistory()
 const MySwal = withReactContent(Swal)
@@ -32,7 +33,8 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
     const [activeMenu, setActiveMenu] = useState(true)
     const [screenSize, setScreenSize] = useState<any | null>(null)
     const [openMenu, setOpenMenu] = useState(false)
-    const { name } = useUser()
+    const { name } = useAdmin()
+    // const { isLoggedIn, setIsLoggedIn, signOut, isSignedOut } = useAuth('admin')
     const { setIsLoggedIn } = useAuth('admin')
 
     const handleClick = (event: { preventDefault: () => void }) => {
@@ -42,6 +44,10 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
         setIsLoggedIn(false)
         navigate('/')
     }
+
+    // if (!isLoggedIn || isSignedOut) {
+    //     navigate('/')
+    // }
 
 
     useEffect(() => {
@@ -74,7 +80,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         <img src={logo} alt="logo" className="eform-logo"/>
                         <hr />
                     </header>
-                    <NavLink to="/admin" className="nav-links" style={({ isActive }) => ({ color: isActive ? "white" : ""})}>
+                    <NavLink to="/admin" className="nav-links"  style={({ isActive }) => {return { color: isActive ? 'active' : '' }}} end>
                         <div className="icon-container">
                             <img src={dashboard} alt='dashboard icon'/>
                         </div>
@@ -118,7 +124,8 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                         <div className="mobile-admin-logout-button" style={{width: '200px',}}>
                             <Button 
                                 type='submit' 
-                                onClick={handleClick} 
+                                // onClick={() => signOut()} 
+                                onClick={handleClick}
                                 variant="gold"
                             >
                                 <img src={logout} alt='logout icon' />Logout
@@ -128,24 +135,24 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                 </section>
             )}
         </div>
-        <div className="desktop-admin-sidebar">
+        <div className="desktop-admin-sidebar" >
             <header className="admin-sidebar-title">
                 <img src={logo} alt="logo" className="eform-logo"/>
                 <hr />
             </header>
-            <NavLink to="/admin" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
+            <NavLink to="/admin" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'active' : '' }}} end>
                 <div className="icon-container">
                     <img src={dashboard} alt='dashboard icon'/>
                 </div>
                 <span>Dashboard</span>
             </NavLink>
-            <NavLink to="transaction-history" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
+            <NavLink to="transaction-history" className="nav-links">
                 <div className="icon-container">
                     <img src={cards} alt='payment icon'/>
                 </div>
                 <span>Transaction History</span>
             </NavLink>
-            <NavLink to="create-user" className="nav-links" style={({ isActive }) => {return { color: isActive ? 'red' : '' }}}>
+            <NavLink to="create-user" className="nav-links">
                 <div className="icon-container">
                     <img src={createUser} alt='payment icon'/>
                 </div>
@@ -177,7 +184,8 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                 <div className="desktop-admin-logout-button">
                     <Button 
                         type='submit' 
-                        onClick={handleClick} 
+                        // onClick={() => signOut()} 
+                        onClick={handleClick}
                         variant="gold"
                     >
                         <img src={logout} alt='logout icon' />Logout

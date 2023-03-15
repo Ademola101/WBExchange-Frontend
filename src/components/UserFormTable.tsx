@@ -2,7 +2,7 @@ import './styles/userformtable.scss'
 import Button from "./Button"
 import Input from "./Input"
 import InputFilter from "./InputFilter"
-import { getTransactions } from "../services/transactions"
+import { getUserTransactions } from '../services/usertransaction'
 import { USERCOLUMNS } from "../data/usercolumn"
 import GlobalFilter from "./GlobalFilter"
 import backArrow from '../assets/icons/backArrow.svg'
@@ -12,9 +12,13 @@ import { useQuery } from "react-query"
 import { useMemo } from "react"
 import { Row, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTable } from "react-table"
 import UserInputFilter from './UserInputFilter'
+import { useAuth } from '../hooks/auth'
 
 const UserFormTable = () => {
-    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions'], getTransactions, { initialData: []})
+    const { isLoggedIn } = useAuth('user')
+    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions'], getUserTransactions, {
+        initialData: [],
+    })
     const columns: any = useMemo(() => USERCOLUMNS, [])
     const data = useMemo(() => [...result], [result])
 
