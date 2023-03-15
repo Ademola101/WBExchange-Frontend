@@ -15,10 +15,11 @@ import { Row, useAsyncDebounce, useGlobalFilter, usePagination, useSortBy, useTa
 
 const AdminFormTable = () => {
     const token = localStorage.getItem('wb-admin-token')
-    console.log(token)
+    // console.log(token)
     const { data: result, isLoading, error, isSuccess } = useQuery(['admintransactions', token], getTransactions, {
         initialData: [],
         enabled: !!token,
+        staleTime: 0,
     })
     const columns: any = useMemo(() => COLUMNS, [])
     const data = useMemo(() => [...result], [result])
@@ -88,7 +89,7 @@ const AdminFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={5}>© 2023 N-Tech System</td>
+                                            <td colSpan={5}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 
@@ -165,7 +166,7 @@ const AdminFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={5}>© 2023 N-Tech System</td>
+                                            <td colSpan={5}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 

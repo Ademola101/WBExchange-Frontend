@@ -15,9 +15,12 @@ import UserInputFilter from './UserInputFilter'
 import { useAuth } from '../hooks/auth'
 
 const UserFormTable = () => {
+    const token = localStorage.getItem('wb-user-token')
     const { isLoggedIn } = useAuth('user')
-    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions'], getUserTransactions, {
+    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions', token], getUserTransactions, {
         initialData: [],
+        enabled: !!token,
+        staleTime: 0,
     })
     const columns: any = useMemo(() => USERCOLUMNS, [])
     const data = useMemo(() => [...result], [result])
@@ -86,7 +89,7 @@ const UserFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={5}>© 2023 N-Tech System</td>
+                                            <td colSpan={4}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 
@@ -160,7 +163,7 @@ const UserFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={5}>© 2023 N-Tech System</td>
+                                            <td colSpan={4}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 

@@ -2,6 +2,7 @@ import './styles/input.scss'
 
 interface InputProps {
     type: string
+    step?: string
     placeholder?: string
     id: string
     name: string
@@ -12,12 +13,13 @@ interface InputProps {
     required?: boolean
     error?: any
 }
-const Input: React.FC<InputProps> = ({type, placeholder, id, name, value, onChange, label, variant, required, error}) => {
+const Input: React.FC<InputProps> = ({type, step, placeholder, id, name, value, onChange, label, variant, required, error}) => {
     return (
         <div className={`custom-input`}>
             <label htmlFor={id} className={variant}>{label}</label>
             <input 
                 type={type} 
+                step={step}
                 placeholder={placeholder} 
                 id={id} 
                 name={name} 

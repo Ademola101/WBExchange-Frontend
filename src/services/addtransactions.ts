@@ -1,6 +1,14 @@
 import axios from 'axios'
 import { BASE_URL } from '../constant'
 
+axios.interceptors.response.use(function (response) {
+    // Do something with response data
+    return response;
+  }, function (error) {
+    // Do something with response error
+    return Promise.reject(error);
+});
+
 type newTransactions = {
     amount: string
     amountCoin: string
@@ -10,7 +18,7 @@ interface IToken {
     token: string | null
 }
 
-const token = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token = JSON.parse(localStorage.getItem('wb-user-token') as string)
 
 export const addNewTransactions = async(data: newTransactions) => {
     try {

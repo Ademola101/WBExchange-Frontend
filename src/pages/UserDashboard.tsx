@@ -24,13 +24,16 @@ const MySwal = withReactContent(Swal)
 
 
 const UserDashboard = () => {
+    const token = localStorage.getItem('wb-user-token')
     const { isLoggedIn } = useAuth('user')
     const [transactionData, setTransactionData] = useState({
         amount: '',
         amountCoin: '',
     })
-    const { data, isSuccess } = useQuery('userquery', getUserData, {
-        initialData: {}
+    const { data, isSuccess } = useQuery(['userquery', token], getUserData, {
+        initialData: {},
+        enabled: !!token,
+        staleTime: 0,
     })
     console.log(data)
     const { mutate, isLoading, error } = useMutation(addNewTransactions, {

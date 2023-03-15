@@ -20,9 +20,11 @@ interface IToken {
 const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
 
 const UserTable = () => {
-    const { isLoggedIn, setIsLoggedIn } = useAuth('user')
-    const { data: result, isLoading, error, isSuccess } = useQuery('usertransactions', () => getUserTransactions(), {
+    const token = localStorage.getItem('wb-user-token')
+    const { data: result, isLoading, error, isSuccess } = useQuery(['usertransactions', token], () => getUserTransactions(), {
         initialData: [],
+        enabled: !!token,
+        staleTime: 0,
     })
     console.log(result)
   
@@ -99,7 +101,7 @@ const UserTable = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan={5}>© 2023 N-Tech System</td>
+                                <td colSpan={5}>© 2023 N-TECH System</td>
                                 <td>
                                     <button  
                                         type='submit' 
@@ -166,7 +168,7 @@ const UserTable = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan={5}>© 2023 N-Tech System</td>
+                                <td colSpan={4}>© 2023 N-TECH System</td>
                                 <td>
                                     <button  
                                         type='submit' 
