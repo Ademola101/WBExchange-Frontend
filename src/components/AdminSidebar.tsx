@@ -8,6 +8,7 @@ import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
 import report from '../assets/icons/report.svg'
 import hamburger from '../assets/icons/hamburger.svg'
+import avatar from '../assets/icons/avatar.svg'
 import Button from './Button'
 import { useUser } from '../hooks/user'
 import { useAuth } from '../hooks/auth'
@@ -118,7 +119,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
                     </NavLink>
                     <footer className="admin-hamburger-logout">
                         <div className="desktop-admin-user-profile">
-                            <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
+                            <><img src={avatar} alt="avatar" /></>
                             <span>{name}</span>
                         </div>
                         <div className="mobile-admin-logout-button" style={{width: '200px',}}>
@@ -178,7 +179,7 @@ const AdminSidebar = ({isActive}: IAdminSidebarProps) => {
             </NavLink>
             <footer className="desktop-admin-sidebar-logout">
                 <div className="desktop-admin-user-profile">
-                    <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
+                    <><img src={avatar} alt="avatar" /></>
                     <span>{name}</span>
                 </div>
                 <div className="desktop-admin-logout-button">

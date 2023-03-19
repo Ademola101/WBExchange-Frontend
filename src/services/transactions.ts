@@ -1,13 +1,20 @@
 import axios from "axios";
 import { BASE_URL } from "../constant";
 
-axios.interceptors.response.use(function (response) {
-    // Do something with response data
-    return response;
-  }, function (error) {
-    // Do something with response error
-    return Promise.reject(error);
-});
+axios.interceptors.response.use(
+    response => {
+      // Do something with the response data
+      return response;
+    },
+    error => {
+      if (error.response.status === 401) {
+        // Handle 401 error
+        // Redirect the user to the login page
+        window.location.reload()
+      }
+      return Promise.reject(error);
+    }
+ );
 
 interface IToken {
     token: string | null
