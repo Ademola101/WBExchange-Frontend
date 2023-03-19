@@ -80,6 +80,8 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
             amount: '',
             amountCoin: ''
         })
+        // setValue('')
+        // setCoinValue('')
     }
 
     const disabled = !transactionData.amount || !transactionData.amountCoin || isLoading

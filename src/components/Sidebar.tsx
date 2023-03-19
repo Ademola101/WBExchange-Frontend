@@ -5,6 +5,7 @@ import cards from '../assets/icons/cards.svg'
 import key from '../assets/icons/key.svg'
 import logout from '../assets/icons/logout.svg'
 import hamburger from '../assets/icons/hamburger.svg'
+import avatar from '../assets/icons/avatar.svg'
 import Button from './Button'
 import { useUser } from '../hooks/user'
 import { useAuth } from '../hooks/auth'
@@ -92,7 +93,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                     </NavLink>
                     <footer className="user-hamburger-logout">
                         <div className="mobile-user-profile">
-                            <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
+                            <><img src={avatar} alt="avatar" /></>
                             <span>{name}</span>
                         </div>
                         <div className="mobile-user-logout-button" style={{width: '200px',}}>
@@ -134,7 +135,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
             </NavLink>
             <footer className="desktop-sidebar-logout">
                 <div className="desktop-user-profile">
-                    <><img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="profile-photo" /></>
+                    <><img src={avatar} alt="avatar" /></>
                     <span>{name}</span>
                 </div>
                 <div className="desktop-logout-button">
