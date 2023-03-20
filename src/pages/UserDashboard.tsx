@@ -109,40 +109,44 @@ const UserDashboard = () => {
                 </header> */}
                 <section className='mobile-overview'>
                     <p>Overview</p>
-                    <div className='overview-card'>
-                        <>
-                            <img src={transactions} alt='transaction icon' />
-                        </>
-                        <div>
-                            <span>Total Transactions</span>
-                            <span>{data?.result?.t_trans}</span>
+                    <div className='overview-card-top'>
+                        <div className='overview-card'>
+                            <>
+                                <img src={transactions} alt='transaction icon' />
+                            </>
+                            <div>
+                                <span>Total Transactions</span>
+                                <span>{data?.result?.t_trans}</span>
+                            </div>
+                        </div>
+                        <div className='overview-card'>
+                            <>
+                                <img src={amount} alt='amount icon' />
+                            </>
+                            <div>
+                                <span>Total Amount</span>
+                                <span>{data?.result?.t_amount}</span>
+                            </div>
                         </div>
                     </div>
-                    <div className='overview-card'>
-                        <>
-                            <img src={amount} alt='amount icon' />
-                        </>
-                        <div>
-                            <span>Total Amount</span>
-                            <span>{data?.result?.t_amount}</span>
+                    <div className='overview-card-bottom'>
+                        <div className='overview-card'>
+                            <>
+                                <img src={coins} alt='coin icon' />
+                            </>
+                            <div>
+                                <span>Total Coins</span>
+                                <span>{data?.result?.t_coin}</span>
+                            </div>
                         </div>
-                    </div>
-                    <div className='overview-card'>
-                        <>
-                            <img src={coins} alt='coin icon' />
-                        </>
-                        <div>
-                            <span>Total Coins</span>
-                            <span>{data?.result?.t_coin}</span>
-                        </div>
-                    </div>
-                    <div className='overview-card'>
-                        <>
-                            <img src={session} alt='clock icon' />
-                        </>
-                        <div>
-                            <span>Total Session</span>
-                            <span>{data?.result?.t_session}</span>
+                        <div className='overview-card'>
+                            <>
+                                <img src={session} alt='clock icon' />
+                            </>
+                            <div>
+                                <span>Total Session</span>
+                                <span>{data?.result?.t_session}</span>
+                            </div>
                         </div>
                     </div>
                 </section>

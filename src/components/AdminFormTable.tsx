@@ -46,7 +46,7 @@ const AdminFormTable = () => {
     return (
         <div className="admin-form-table">
             <div className="mobile-admin-form-table">
-                <section>
+                <section className='admin-add-filter'>
                     <InputFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </section>
                 <section className="mobile-table">

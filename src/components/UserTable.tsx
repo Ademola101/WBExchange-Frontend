@@ -101,7 +101,7 @@ const UserTable = () => {
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colSpan={5}>© 2023 N-TECH System</td>
+                                <td colSpan={4}>© 2023 N-TECH System</td>
                                 <td>
                                     <button  
                                         type='submit' 
