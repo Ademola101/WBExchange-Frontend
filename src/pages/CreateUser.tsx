@@ -109,6 +109,7 @@ const CreateUser = () => {
             role: '',
         })
     }
+    const disabled = !data.email || !data.name || !data.password || !data.password_confirmation || !data.role || isLoading
     return (
         <div className="create-user">
             <div className="mobile-create-user">
@@ -181,6 +182,7 @@ const CreateUser = () => {
                                 onClick={handleClick} 
                                 variant="gold"
                                 isLoading={isLoading}
+                                disabled={disabled}
                             >
                                 Create User
                             </Button>
@@ -194,73 +196,77 @@ const CreateUser = () => {
                 </header>
                 <section className="desktop-form">
                     <form>
-                        <Input
-                            type="email"
-                            placeholder="johndoe@mail.com"
-                            id="email"
-                            label="Email address"
-                            name="email"
-                            value={data.email}
-                            onChange={handleChange}
-                            required
-                            variant='black'
-                        />
-                        <Input
-                            type="text"
-                            placeholder="johndoe"
-                            id="name"
-                            label="Username"
-                            name="name"
-                            value={data.name}
-                            onChange={handleChange}
-                            required
-                            variant='black'
-                        />
-                        <label htmlFor="role">
-                            Select Role
-                            <select name='role'
-                                id='role'
-                                value={data.role}
+                        <div className='input-column-one'>
+                            <Input
+                                type="email"
+                                placeholder="johndoe@mail.com"
+                                id="email"
+                                label="Email address"
+                                name="email"
+                                value={data.email}
                                 onChange={handleChange}
-                            >
-                                <option value="select role" disabled>Select Role</option>
-                                <option>Staff</option>
-                                <option>Admin</option>
-                            </select>
-                        </label>
-                        <Input
-                            type="password"
-                            placeholder="********"
-                            id="password"
-                            label="Password"
-                            name="password"
-                            value={data.password}
-                            onChange={handleChange}
-                            required
-                            variant='black'
-                        />
-                        <Input
-                            type="password"
-                            placeholder="********"
-                            id="password_confirmation"
-                            label="Confirm Password"
-                            name="password_confirmation"
-                            value={data.password_confirmation}
-                            onChange={handleChange}
-                            required
-                            variant='black'
-                        />
-                        <section
-                                style={{width: '236px'}}>
-                            <Button 
-                                type='submit' 
-                                onClick={handleClick} 
-                                variant="gold"
-                                isLoading={isLoading}
-                            >
-                                Create User
-                            </Button>
-                        </section>
+                                required
+                                variant='black'
+                            />
+                            <Input
+                                type="text"
+                                placeholder="johndoe"
+                                id="name"
+                                label="Username"
+                                name="name"
+                                value={data.name}
+                                onChange={handleChange}
+                                required
+                                variant='black'
+                            />
+                            <label htmlFor="role">
+                                Select Role
+                                <select name='role'
+                                    id='role'
+                                    value={data.role}
+                                    onChange={handleChange}
+                                >
+                                    <option value="select role" disabled>Select Role</option>
+                                    <option>Staff</option>
+                                    <option>Admin</option>
+                                </select>
+                            </label>
+                        </div>
+                        <div className='input-column-two'>
+                            <Input
+                                type="password"
+                                placeholder="********"
+                                id="password"
+                                label="Password"
+                                name="password"
+                                value={data.password}
+                                onChange={handleChange}
+                                required
+                                variant='black'
+                            />
+                            <Input
+                                type="password"
+                                placeholder="********"
+                                id="password_confirmation"
+                                label="Confirm Password"
+                                name="password_confirmation"
+                                value={data.password_confirmation}
+                                onChange={handleChange}
+                                required
+                                variant='black'
+                            />
+                            <section style={{width: '236px'}}>
+                                <Button 
+                                    type='submit' 
+                                    onClick={handleClick} 
+                                    variant="gold"
+                                    isLoading={isLoading}
+                                    disabled={disabled}
+                                >
+                                    Create User
+                                </Button>
+                            </section>
+                        </div>
                     </form>
                 </section>
             </div>

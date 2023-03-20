@@ -46,7 +46,7 @@ const UserFormTable = () => {
     return (
         <div className="user-form-table">
             <div className="mobile-user-form-table">
-                <section>
+                <section className='user-add-filter'>
                     <UserInputFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </section>
                 <section className='mobile-user-table'>

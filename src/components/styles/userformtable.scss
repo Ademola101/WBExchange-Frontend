@@ -4,10 +4,13 @@
 }
 .mobile-user-form-table {
     width: 100%;
-    padding: 20px;
+    // padding: 20px;
+    .user-add-filter {
+        padding: 20px;
+    }
     .mobile-user-table {
         width: 100%;
-        padding: 20px;
+        // padding: 20px;
         main::-webkit-scrollbar {
             display: none;
         }
