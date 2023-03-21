@@ -33,7 +33,7 @@ export const USERCOLUMNS: IColumns[] = [
     },
     {
         Header: "Time",
-        accessor: "time",
+        accessor: "updated_at",
         id: "time",
         Cell: ({ value}: any) => {
             return moment(value).fromNow()

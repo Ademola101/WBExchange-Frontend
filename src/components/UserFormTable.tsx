@@ -2,8 +2,8 @@ import './styles/userformtable.scss'
 import Button from "./Button"
 import Input from "./Input"
 import InputFilter from "./InputFilter"
-import { getUserTransactions } from '../services/usertransaction'
-import { USERCOLUMNS } from "../data/usercolumn"
+import { getAllUserTransactions } from '../services/allusertransactions'
+import { COLUMNS } from "../data/column"
 import GlobalFilter from "./GlobalFilter"
 import backArrow from '../assets/icons/backArrow.svg'
 import forwardArrow from '../assets/icons/forwardArrow.svg'
@@ -17,12 +17,13 @@ import { useAuth } from '../hooks/auth'
 const UserFormTable = () => {
     const token = localStorage.getItem('wb-user-token')
     const { isLoggedIn } = useAuth('user')
-    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions', token], getUserTransactions, {
+    const { data: result, isLoading, error, isSuccess } = useQuery(['userformtransactions', token], getAllUserTransactions, {
         initialData: [],
         enabled: !!token,
         staleTime: 0,
     })
-    const columns: any = useMemo(() => USERCOLUMNS, [])
+    console.log(result)
+    const columns: any = useMemo(() => COLUMNS, [])
     const data = useMemo(() => [...result], [result])
 
     const { 
@@ -89,7 +90,7 @@ const UserFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={4}>© 2023 N-TECH System</td>
+                                            <td colSpan={5}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 
@@ -163,7 +164,7 @@ const UserFormTable = () => {
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colSpan={4}>© 2023 N-TECH System</td>
+                                            <td colSpan={5}>© 2023 N-TECH System</td>
                                             <td>
                                                 <button  
                                                     type='submit' 

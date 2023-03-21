@@ -44,7 +44,16 @@ const UserLogin = () => {
             })
         },
         onSuccess: (res) => {
-            if(res.success === true && res.result.user.role === "Staff") {
+            if(res.result.status == 1) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'You have been suspended',
+                    footer: 'Please contact <a href = "mailto:abc@example.com?subject = Account Suspension&body = Message"></a>'
+                    // footer: '<a href="">Why do I have this issue?</a>'
+                })
+            }
+            else if(res.success === true && res.result.user.role === "Staff") {
                 const Toast = Swal.mixin({
                     toast: true,
                     position: 'top-end',

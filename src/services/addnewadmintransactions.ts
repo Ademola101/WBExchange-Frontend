@@ -1,5 +1,6 @@
-import axios from "axios"
-import { BASE_URL } from "../constant"
+import axios from 'axios'
+import { BASE_URL } from '../constant'
+
 
 axios.interceptors.response.use(
     response => {
@@ -10,28 +11,34 @@ axios.interceptors.response.use(
       if (error.response.status === 401) {
         // Handle 401 error
         // Redirect the user to the login page
+        // window.location.assign('/');
         window.location.reload()
       }
       return Promise.reject(error);
     }
  );
 
+type newTransactions = {
+    amount: string
+    amountCoin: string
+}
+
 interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token = JSON.parse(localStorage.getItem('wb-admin-token') as string)
 
-export const getAllUsers = async () => {
+export const addNewAdminTransactions = async(data: newTransactions) => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/user`, {
+        const response = await axios.post(`${BASE_URL}/api/transaction/add`, data, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         })
-        return response.data.result
+        return response.data
     }
-    catch (err) {
+    catch(err) {
         //@ts-expect-error
         return err.response.data
     }
