@@ -85,7 +85,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                         </div>
                         <span>Transaction History</span>
                     </NavLink>
-                    <NavLink to="change-password" className="nav-links">
+                    <NavLink to="change-my-password" className="nav-links">
                         <div className="icon-container">
                             <img src={key} alt='key icon'/>
                         </div>
@@ -127,7 +127,7 @@ const Sidebar = ({ isActive }: ISidebarProps) => {
                 </div>
                 <span>Transaction History</span>
             </NavLink>
-            <NavLink to="change-password" className="nav-links">
+            <NavLink to="change-my-password" className="nav-links">
                 <div className="icon-container">
                     <img src={key} alt='key icon'/>
                 </div>

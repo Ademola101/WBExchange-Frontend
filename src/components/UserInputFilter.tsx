@@ -39,6 +39,10 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                     icon: 'success',
                     title: 'Data added sucessfully'
                 })
+
+                setTimeout(() => {
+                    window.location.reload()
+                }, 3000)
             } 
             else {
                 Swal.fire({
@@ -113,6 +117,7 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                         onChange={(event: any) => {
                             setCoinValue(event?.target?.value)
                             setTransactionData({ ...transactionData, amountCoin: event.target.value})
+                            handleChange(event?.target?.value)
                         }}
                     />
                     <Button 
@@ -152,6 +157,7 @@ const InputFilter = ({ globalFilter, setGlobalFilter}: any) => {
                         onChange={(event: any) => {
                             setCoinValue(event?.target?.value)
                             setTransactionData({ ...transactionData, amountCoin: event.target.value})
+                            handleChange(event?.target?.value)
                         }}
                     />
                     <Button 

@@ -1,7 +1,7 @@
-import './styles/changepassword.scss'
+import './styles/userchangepassword.scss'
 import Input from '../components/Input'
 import Button from '../components/Button'
-import { changeAdminPassword } from '../services/changepassword'
+import { changeUserPassword } from '../services/userchangepassword'
 
 
 import { useMutation, useQueryClient } from 'react-query'
@@ -12,13 +12,13 @@ import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
 import { createBrowserHistory } from "history";
 
-const ChangePassword = ({ isActive } : any) => {
+const UserChangePassword = ({ isActive } : any) => {
     const navigate = useNavigate()
     const [data, setData] = useState({
         password: '',
         password_confirmation: '',
     })
-    const { mutate, isLoading } = useMutation(changeAdminPassword, {
+    const { mutate, isLoading } = useMutation(changeUserPassword, {
         onSuccess: (res) => {
             if(res.success === true) {
                 const Toast = Swal.mixin({
@@ -93,8 +93,8 @@ const ChangePassword = ({ isActive } : any) => {
     const disabled = !data.password || !data.password_confirmation || isLoading
 
     return (
-        <div className="change-password">
-            <div className="mobile-change-password">
+        <div className="user-change-password">
+            <div className="mobile-user-change-password">
                 {/* <header>
                     <h3>Password Reset</h3>
                 </header> */}
@@ -141,7 +141,7 @@ const ChangePassword = ({ isActive } : any) => {
                     </form>
                 </section>
             </div>
-            <div className="desktop-change-password">
+            <div className="desktop-user-change-password">
                 <header>
                     <h3>Password Reset</h3>
                 </header>
@@ -191,4 +191,4 @@ const ChangePassword = ({ isActive } : any) => {
         </div>
     )
 }
-export default ChangePassword
+export default UserChangePassword

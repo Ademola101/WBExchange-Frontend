@@ -14,22 +14,31 @@ axios.interceptors.response.use(
       }
       return Promise.reject(error);
     }
- );
+)
+
+type changeUserPasswordType = {
+    password: string
+    password_confirmation: string
+}
 
 interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+interface IToken {
+    token: string | null
+}
 
-export const getAllUsers = async () => {
+const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
+
+export const changeUserPassword = async(data: changeUserPasswordType) => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/user`, {
+        const response = await axios.post(`${BASE_URL}/api/changepassword`, data, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         })
-        return response.data.result
+        return response.data
     }
     catch (err) {
         //@ts-expect-error

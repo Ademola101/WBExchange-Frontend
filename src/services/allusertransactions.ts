@@ -20,11 +20,11 @@ interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token: IToken = JSON.parse(localStorage.getItem('wb-user-token') as string)
 
-export const getAllUsers = async () => {
+export const getAllUserTransactions = async() => {
     try {
-        const response = await axios.get(`${BASE_URL}/api/user`, {
+        const response = await axios.get(`${BASE_URL}/api/allusertransaction`, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }

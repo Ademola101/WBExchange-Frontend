@@ -1,5 +1,5 @@
-import axios from "axios"
-import { BASE_URL } from "../constant"
+import axios from 'axios'
+import { BASE_URL } from '../constant'
 
 axios.interceptors.response.use(
     response => {
@@ -16,23 +16,29 @@ axios.interceptors.response.use(
     }
  );
 
+type deleteType = {
+    id: string
+}
+
 interface IToken {
     token: string | null
 }
 
-const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token = JSON.parse(localStorage.getItem('wb-admin-token') as string)
 
-export const getAllUsers = async () => {
+export const deleteUser = async (data: deleteType) => {
+    const id  = data
+    var resdata = {id:id}
     try {
-        const response = await axios.get(`${BASE_URL}/api/user`, {
+        const response = await axios.post(`${BASE_URL}/api/deleteuser`, resdata, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         })
-        return response.data.result
+        return response.data
     }
-    catch (err) {
+    catch(error) {
         //@ts-expect-error
-        return err.response.data
+        return error.response.data
     }
 }
