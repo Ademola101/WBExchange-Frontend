@@ -27,7 +27,7 @@ interface IToken {
     token: string | null
 }
 
-const token = JSON.parse(localStorage.getItem('wb-admin-token') as string)
+const token: IToken = JSON.parse(localStorage.getItem('wb-admin-token') as string)
 
 export const addNewAdminTransactions = async(data: newTransactions) => {
     try {
