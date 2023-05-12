@@ -5,7 +5,23 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-const queryClient = new QueryClient()
+// const queryClient = new QueryClient()
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: true, // enable automatic retries on failed queries
+      // onError: (error) => {
+      //   //@ts-expect-error
+      //   if (error.response && error.response.status === 401) {
+      //     // trigger a re-authentication flow when a 401 error occurs
+      //     // this could be done using a global state management library
+      //     // or by redirecting to the login page
+      //   }
+      // },
+    },
+  },
+});
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
