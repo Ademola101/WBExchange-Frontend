@@ -12,6 +12,10 @@ import { useAuth } from '../hooks/auth'
 import { useEffect, useMemo, useState } from 'react'
 import { useTable, useSortBy, useGlobalFilter, usePagination, Row } from 'react-table'
 import { useQuery } from 'react-query'
+import * as XLSX from 'xlsx'
+import jsPDF from 'jspdf'
+import * as autoTable from 'jspdf-autotable'
+import { useExportData } from "react-table-plugins"
 
 
 const Table = () => {
@@ -52,6 +56,15 @@ const Table = () => {
 
     const handleClick = () => {}
 
+    const exportToExcel = () => {
+        const workbook = XLSX.utils.book_new();
+        const worksheet = XLSX.utils.json_to_sheet(result)
+    
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1')
+    
+        XLSX.writeFile(workbook, 'data.xlsx')
+    }
+
 
 
     return (
@@ -63,6 +76,8 @@ const Table = () => {
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
                 <main>
+                    <Button type='submit' onClick={exportToExcel}>Export to Excel</Button>
+                    <Button type='submit' onClick={handleClick}>Export to PDF</Button>
                     <table {...getTableProps()}>
                         <thead>
                             {
@@ -130,6 +145,7 @@ const Table = () => {
                     <GlobalFilter globalFilter={globalFilter} setGlobalFilter={setGlobalFilter} />
                 </header>
                 <main>
+                    <Button type='submit' onClick={exportToExcel}>Export to Excel</Button>
                     <table {...getTableProps()}>
                         <thead>
                             {
