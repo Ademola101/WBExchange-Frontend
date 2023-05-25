@@ -79,7 +79,7 @@ const Reports = () => {
             }
         })
         const ws = XLSX.utils.json_to_sheet(formattedData);
-        
+
         const wb = { Sheets: { data: ws }, SheetNames: ["data"] };
         const excelBuffer = XLSX.write(wb, { bookType: "xlsx", type: "array" });
 
@@ -99,7 +99,7 @@ const Reports = () => {
         pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
         pdf.save('download.pdf');
     }
-console.log(transactions)
+
     
     return (
         <div className="reports">
