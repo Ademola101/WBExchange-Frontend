@@ -3,9 +3,124 @@
     min-height: 100vh;
     background-color: var(--dashboard-background);
 }
+
+
+.export {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 1rem;
+    .export-pdf-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: #DECC32;
+        border-radius: 5px;
+        color: var(--white-text);
+        
+        text-align: justify;
+        margin-right: 1rem;
+        padding: 0.5rem 1rem;
+        outline: none;
+        border: none;
+
+    }
+
+    .export-pdf-button:hover {
+        cursor: pointer;
+        background: #D2D2D2;
+
+
+    }
+
+    .export-excel-button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: #DECC32;
+        border-radius: 5px;
+        color: var(--white-text);
+        text-align: justify;
+        margin-right: 1rem;
+        padding: 0.5rem 1rem;
+
+        outline:none;
+        border: none;
+
+        
+    }
+    span {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: #DECC32;
+        border-radius: 5px;
+        color: var(--white-text);
+        width: 35px;
+        height: 35px;
+        text-align: justify;
+    }
+}
+
+
+.export-excel-button:hover {
+    cursor: pointer;
+    background: #D2D2D2;
+}
 .mobile-reports {
     width: 100%;
     padding: 100px 20px;
+    .export {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 1rem;
+        .export-pdf-button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: #DECC32;
+            border-radius: 5px;
+            color: var(--white-text);
+            width: 35px;
+            height: 35px;
+            text-align: justify;
+            margin-right: 1rem;
+            padding: 0.5rem 1rem;
+            outline: none;
+            border: none;
+        }
+        .export-pdf-button:hover {
+            cursor: pointer;
+            background: #D2D2D2;
+        }
+        .export-excel-button {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: #DECC32;
+            border-radius: 5px;
+            color: var(--white-text);
+            width: 35px;
+            height: 35px;
+            text-align: justify;
+            margin-right: 1rem;
+            padding: 0.5rem 1rem;
+            outline: none;
+            border: none;
+        }
+        .export-excel-button:hover {
+            cursor: pointer;
+            background: #D2D2D2;
+        }
+    }
     header {
         display: flex;
     }

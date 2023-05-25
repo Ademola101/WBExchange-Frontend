@@ -15,6 +15,7 @@ import { useAsyncDebounce } from 'react-table'
 import AdminFormTable from '../components/AdminFormTable'
 import Spinner from '../components/Spinner'
 
+
 const AdminDashboard = () => {
     const token = localStorage.getItem('wb-admin-token')
     const [adminGlobalFilter, setAdminGlobalFilter] = useState<any>('')

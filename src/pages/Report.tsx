@@ -9,6 +9,8 @@ import { format, parse, parseISO } from "date-fns";
 import moment from 'moment';
 
 
+
+
 const Report = () => {
     const [filterInput, setFilterInput] = useState({
         startDate: "",
@@ -73,6 +75,9 @@ const Report = () => {
     const { name, value } = event.target;
     setFilterInput({ ...filterInput, [name]: value });
     };
+
+
+
   return (
     <div className='report'>
         <div className='mobile-report'></div>
@@ -80,9 +85,12 @@ const Report = () => {
             <header>
                 <h3>Report</h3>
             </header>
+
+            
             <section>
+
             <div>
-            <input
+            <input 
        type="date"
        id="startDate"
        name="startDate"
