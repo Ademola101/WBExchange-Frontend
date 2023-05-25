@@ -1,0 +1,14 @@
+{
+    "customizations": {
+        "codespaces": {
+            "repositories": {
+                "WB-Exchange/WBExchange-Frontend":{
+                    "permissions": {
+                        "read": true,
+                        "write": true
+                    }
+                    }
+                }
+            }
+        }
+    }
