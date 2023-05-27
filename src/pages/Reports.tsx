@@ -138,7 +138,7 @@ const pagesVisited = pageNumber * usersPerPage;
         pdf.save('download.pdf');
     }
 
-    
+    console.log(allTransactions.length)
     return (
         <div className="reports">
             
