@@ -2,8 +2,45 @@
     width: 100%;
     min-height: 100vh;
     background-color: var(--dashboard-background);
+
+    
+}
+.showing{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: 20px;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+  }
+.paginationContainer{
+
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    gap: 20px;
+    list-style-type: none;
+    
 }
 
+.paginationContainer a {
+    text-decoration: none;
+  color: #545F7D;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  text-align: center;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+
+}
 
 .export {
     display: flex;
