@@ -35,36 +35,32 @@ const [pageNumber, setPageNumber] = useState(0);
 const usersPerPage = 10;
 const pagesVisited = pageNumber * usersPerPage;
 
-    
+    const [filteredTransactions, setFilteredTransactions] = useState<any>(null)
     const [startDate,setStartDate]= useState(new Date())
     const [endDate,setEndDate]= useState(new Date())
     const [transactions, setTransactions] = useState<any>()
     let { data: allTransactions, isLoading, error } = useQuery('transactions', getTransactions, {
-        refetchInterval: 1000,
+        refetchInterval: 1000
+        
         
 
 
     })
 
 
-    // useEffect(() => {
-    //     axios.get(`${BASE_URL}/api/alltransaction`, {
-    //         headers: {
-    //             "Authorization": `Bearer ${token}`
-    //         }
-    //     }).then((response) => {
-    //         setTransactions(response.data.result)
-    //         setAllTransactions(response.data.result)
-    //     })
-    // })
+    
 
     const handleSelect = (date: any) =>{
-        allTransactions= allTransactions.filter((transactions: any) => {
+        const filtered =   allTransactions.filter((transactions: any) => {
+            
+        setStartDate(date.selection.startDate)
+        setEndDate(date.selection.endDate) 
+        
             let transactionDate = new Date(transactions["created_at"])
             return(transactionDate >= date.selection.startDate && transactionDate <= date.selection.endDate)
         })
-        setStartDate(date.selection.startDate)
-        setEndDate(date.selection.endDate) 
+    
+        setFilteredTransactions(filtered)
         
     }
     
@@ -73,18 +69,19 @@ const pagesVisited = pageNumber * usersPerPage;
         endDate: endDate,
         key: 'selection',
     }
-    const pageCount = Math.ceil(allTransactions?.length / usersPerPage);
+    
+const transactionToDisplay = filteredTransactions ? filteredTransactions : allTransactions
+const pageCount = Math.ceil(transactionToDisplay?.length / usersPerPage);
     const changePage = ({ selected }: any) => {
         setPageNumber(selected);
     };
-
-    const displayUsers = allTransactions?.slice( pagesVisited, pagesVisited + usersPerPage).map((result: any) => {
+    const displayUsers = transactionToDisplay?.slice( pagesVisited, pagesVisited + usersPerPage).map((result: any) => {
         // let date = format(parseISO(result?.created_at), "dd/MM/yyyy HH:mm:ss")
         let date = new Date(result["created_at"])
         let time = moment(result?.created_at).fromNow()
 
         return (
-            <tr>
+            <tr key= {result?.transId}>
 
                 <td>{result?.transId}</td>
                 <td>{result?.amount}</td>
@@ -138,7 +135,7 @@ const pagesVisited = pageNumber * usersPerPage;
         pdf.save('download.pdf');
     }
 
-    console.log(allTransactions.length)
+    console.log(allTransactions?.length)
     return (
         <div className="reports">
             
@@ -156,7 +153,7 @@ const pagesVisited = pageNumber * usersPerPage;
 
                 <main>
                 <div className="export">
-                <button className='export-excel-button' onClick={() => exportToExcel(transactions, "transaction")}>Export as spreadsheet</button>
+                <button className='export-excel-button' onClick={() => exportToExcel(transactionToDisplay, "transaction")}>Export as spreadsheet</button>
 
 <button className='export-pdf-button' onClick={createPdf}>Export as PDF</button>
 
@@ -174,21 +171,7 @@ const pagesVisited = pageNumber * usersPerPage;
                             </tr>
                         </thead>
                         <tbody>
-                            {transactions?.map((result: any) => {
-                                // let date = format(parseISO(result?.created_at), "dd/MM/yyyy HH:mm:ss")
-                                let date = new Date(result["created_at"])
-                                let time = moment(result?.created_at).fromNow()
-                                return (
-                                    <tr>
-                                        <td>{result?.transId}</td>
-                                        <td>{result?.amount}</td>
-                                        <td>{result?.amountCoin}</td>
-                                        <td>{result?.user}</td>
-                                        <td>{date.toLocaleDateString()}</td>
-                                        <td>{time}</td>
-                                    </tr>
-                                )
-                            })}
+{displayUsers}
                         </tbody>
                     </table>
                 </main>
@@ -211,7 +194,7 @@ const pagesVisited = pageNumber * usersPerPage;
 
                         </div>
 <div className="export">
-<button className='export-excel-button' onClick={() => exportToExcel(allTransactions, "transaction")}>Export as spreadsheet</button>
+<button className='export-excel-button' onClick={() => exportToExcel(transactionToDisplay, "transaction")}>Export as spreadsheet</button>
 <button className='export-pdf-button' onClick={createPdf}>Export as PDF</button>
 
     
@@ -249,9 +232,9 @@ const pagesVisited = pageNumber * usersPerPage;
                                
                             </tbody>
                         </table>
-                        <div>
-                                <div className="showing">
-                                <p>Showing {pageNumber + 1} to {pageNumber + 10} of {allTransactions?.length} entries</p>
+                        {transactionToDisplay && <div>
+                               <div className="showing">
+                                <div className='showingtext'>Showing {pageNumber + 1} to {pageNumber + 10} of {transactionToDisplay?.length+ 1} entries</div>
 
                                 <ReactPaginate  
                                 previousLabel={"Previous"}
@@ -264,11 +247,11 @@ const pagesVisited = pageNumber * usersPerPage;
                                 nextLinkClassName={"nextBttn"}
                                 disabledClassName={"paginationDisabled"}
 
-                                activeClassName={"paginationActive"}
+                                activeClassName={"paginationactive"}
                                 />
                                 </div>
 
-                                </div>
+                                </div>}
 
 
                     

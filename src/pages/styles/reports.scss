@@ -40,7 +40,51 @@
   align-items: center;
   gap: 10px;
 
+
+
 }
+.showingtext {
+    text-decoration: none;
+  color: #545F7D;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  text-align: center;
+  
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.paginationContainer a:hover {
+    background-color:rgb(61, 145, 255);
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 4px;
+
+  
+  cursor: pointer;
+
+}
+
+.paginationactive a{
+    background-color:rgb(61, 145, 255);
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 4px;
+  
+    
+    cursor: pointer;
+  
+  }
+
+
 
 .export {
     display: flex;
