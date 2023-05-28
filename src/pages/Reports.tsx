@@ -75,6 +75,14 @@ const pageCount = Math.ceil(transactionToDisplay?.length / usersPerPage);
     const changePage = ({ selected }: any) => {
         setPageNumber(selected);
     };
+
+    const totalAmount = transactionToDisplay?.reduce((acc: any, curr: any) => {
+        return parseFloat(acc) + parseFloat(curr.amount)
+    }, 0)
+
+    const totalCoin = transactionToDisplay?.reduce((acc: any, curr: any) => {
+        return parseFloat(acc) + parseFloat(curr.amountCoin)
+    }, 0)
     const displayUsers = transactionToDisplay?.slice( pagesVisited, pagesVisited + usersPerPage).map((result: any) => {
         // let date = format(parseISO(result?.created_at), "dd/MM/yyyy HH:mm:ss")
         let date = new Date(result["created_at"])
@@ -90,7 +98,10 @@ const pageCount = Math.ceil(transactionToDisplay?.length / usersPerPage);
 
                 <td>{date.toLocaleDateString()}</td>
                 <td>{time}</td>
+
+                
             </tr>
+
         )
     })
 
@@ -229,6 +240,16 @@ const pageCount = Math.ceil(transactionToDisplay?.length / usersPerPage);
                                 })} */}
 
                                 {displayUsers}
+
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{totalAmount}</td>
+                                    <td>{totalCoin}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+
+                                </tr>
                                
                             </tbody>
                         </table>
